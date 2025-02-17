@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect} from 'react';
 
 const commands = {
   about: `I am a Full Stack Mobile Developer specializing in React Native and React, transforming Figma designs into functional apps with seamless payment gateways, REST APIs, third-party integrations, Bluetooth (thermal printers), image optimization, and custom graph libraries. Beyond mobile development, I have experience with security tools like Metasploit, Burp Suite, ZAP, and MOBSf, as well as dev tools like Docker, Git, and GitHub. I’m proficient in Linux, contribute to open-source projects like Bluesky, FreeCodeCamp, Mattermost, and Memos, and continuously expand my knowledge in machine learning and AI. I have worked on codebases with over 30 million users and increasing, showcasing my ability to contribute to large-scale projects with significant impact.`,
@@ -75,108 +75,117 @@ const commands = {
 };
 
 const Terminal = () => {
-  const [history, setHistory] = useState([]);
-  const [input, setInput] = useState('');
-  const [isDarkMode, setIsDarkMode] = useState(true);
-
-  const executeCommand = () => {
-    if (input === 'clear') {
-      setHistory([]); // Clears the terminal history
-    } else if (commands[input]) {
-      setHistory([...history, { command: input, output: commands[input] }]);
-    } else {
-      setHistory([...history, { command: input, output: `Command not found: ${input}` }]);
-    }
-    setInput('');
-  };
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  const colors = {
-    dark: {
-      background: 'black',
-      text: 'lime',
-      command: 'lightgreen',
-      link: 'lightblue',
-      border: 'lime'
-    },
-    light: {
-      background: 'white',
-      text: 'black',
-      command: 'green',
-      link: 'blue',
-      border: 'green'
-    }
-  };
-
-  const currentColors = isDarkMode ? colors.dark : colors.light;
-
-  return (
-    <div style={{ fontFamily: 'monospace', backgroundColor: currentColors.background, color: currentColors.text, padding: '20px', height: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <button 
-        onClick={toggleTheme} 
-        style={{
-          padding: '10px',
-          marginBottom: '20px',
-          alignSelf: 'flex-end',
-          backgroundColor: currentColors.background,
-          color: currentColors.text,
-          border: `2px solid ${currentColors.border}`,
-          cursor: 'pointer',
-          fontSize: '16px'
-        }}>
-        Toggle Theme
-      </button>
-
-      <div style={{ marginBottom: '20px' }}>
-        <p><strong>Available Commands:</strong></p>
-        <ul>
-          {Object.keys(commands).map((command, index) => (
-            <li key={index} style={{ listStyleType: 'none' }}>
-              <span style={{ color: currentColors.command }}>&gt; {command}</span>
-            </li>
+    const [history, setHistory] = useState([]);
+    const [input, setInput] = useState('');
+    const [isDarkMode, setIsDarkMode] = useState(true);
+  
+    const historyRef = useRef(null); // Ref for the history container
+  
+    const executeCommand = () => {
+      if (input === 'clear') {
+        setHistory([]); // Clears the terminal history
+      } else if (commands[input]) {
+        setHistory([...history, { command: input, output: commands[input] }]);
+      } else {
+        setHistory([...history, { command: input, output: `Command not found: ${input}` }]);
+      }
+      setInput('');
+    };
+  
+    const toggleTheme = () => {
+      setIsDarkMode(!isDarkMode);
+    };
+  
+    const colors = {
+      dark: {
+        background: 'black',
+        text: 'lime',
+        command: 'lightgreen',
+        link: 'lightblue',
+        border: 'lime'
+      },
+      light: {
+        background: 'white',
+        text: 'black',
+        command: 'green',
+        link: 'blue',
+        border: 'green'
+      }
+    };
+  
+    const currentColors = isDarkMode ? colors.dark : colors.light;
+  
+    // Scroll to the bottom of the terminal whenever the history changes
+    useEffect(() => {
+      if (historyRef.current) {
+        historyRef.current.scrollTop = historyRef.current.scrollHeight;
+      }
+    }, [history]);
+  
+    return (
+      <div style={{ fontFamily: 'monospace', backgroundColor: currentColors.background, color: currentColors.text, padding: '20px', height: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <button 
+          onClick={toggleTheme} 
+          style={{
+            padding: '10px',
+            marginBottom: '20px',
+            alignSelf: 'flex-end',
+            backgroundColor: currentColors.background,
+            color: currentColors.text,
+            border: `2px solid ${currentColors.border}`,
+            cursor: 'pointer',
+            fontSize: '16px'
+          }}>
+          Toggle Theme
+        </button>
+  
+        <div style={{ marginBottom: '20px' }}>
+          <p><strong>Available Commands:</strong></p>
+          <ul>
+            {Object.keys(commands).map((command, index) => (
+              <li key={index} style={{ listStyleType: 'none' }}>
+                <span style={{ color: currentColors.command }}>&gt; {command}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+  
+        <div ref={historyRef} style={{ flexGrow: 1, overflowY: 'auto' }}>
+          {history.map((entry, index) => (
+            <div key={index} style={{ marginBottom: '10px' }}>
+              <p><span style={{ fontWeight: 'bold' }}>&gt; {entry.command}</span></p>
+              {Array.isArray(entry.output) ? (
+                <div style={{ marginLeft: '10px' }}>
+                  {entry.output.map((item, idx) => (
+                    <p key={idx}>
+                      {item.name ? (
+                        item.link ? (
+                          <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ color: currentColors.link }}>
+                            {item.name}
+                          </a>
+                        ) : (
+                          `${item.name}: ${item.details}`
+                        )
+                      ) : item}
+                    </p>
+                  ))}
+                </div>
+              ) : (
+                <p>{entry.output}</p>
+              )}
+            </div>
           ))}
-        </ul>
+        </div>
+  
+        <input
+          style={{ backgroundColor: currentColors.background, color: currentColors.text, border: 'none', borderBottom: `1px solid ${currentColors.border}`, fontSize: '16px', outline: 'none' }}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && executeCommand()}
+          placeholder="Type a command..."
+        />
       </div>
-
-      <div style={{ flexGrow: 1, overflowY: 'auto' }}>
-        {history.map((entry, index) => (
-          <div key={index} style={{ marginBottom: '10px' }}>
-            <p><span style={{ fontWeight: 'bold' }}>&gt; {entry.command}</span></p>
-            {Array.isArray(entry.output) ? (
-              <div style={{ marginLeft: '10px' }}>
-                {entry.output.map((item, idx) => (
-                  <p key={idx}>
-                    {item.name ? (
-                      item.link ? (
-                        <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ color: currentColors.link }}>
-                          {item.name}
-                        </a>
-                      ) : (
-                        `${item.name}: ${item.details}`
-                      )
-                    ) : item}
-                  </p>
-                ))}
-              </div>
-            ) : (
-              <p>{entry.output}</p>
-            )}
-          </div>
-        ))}
-      </div>
-
-      <input
-        style={{ backgroundColor: currentColors.background, color: currentColors.text, border: 'none', borderBottom: `1px solid ${currentColors.border}`, fontSize: '16px', outline: 'none' }}
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={(e) => e.key === 'Enter' && executeCommand()}
-        placeholder="Type a command..."
-      />
-    </div>
-  );
-};
-
-export default Terminal;
+    );
+  };
+  
+  export default Terminal;
