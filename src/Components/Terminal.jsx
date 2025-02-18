@@ -277,6 +277,7 @@ const Terminal = () => {
     useEffect(() => {
         commandInputRef.current.focus();
     }, []);
+
     const executeCommand = () => {
         if (input === "clear") {
             setHistory([]); // Clears the terminal history
@@ -289,6 +290,10 @@ const Terminal = () => {
             ]);
         }
         setInput("");
+    };
+
+    const handleCommandClick = (_command) => {
+        setHistory([...history, { command: _command, output: commands[_command] }]);
     };
 
     const toggleTheme = () => {
@@ -361,7 +366,11 @@ const Terminal = () => {
                 </p>
                 <ul>
                     {Object.keys(commands).map((command, index) => (
-                        <li key={index} style={{ listStyleType: "none" }}>
+                        <li 
+                            key={index} 
+                            style={{ listStyleType: "none", cursor: "pointer" }}
+                            onClick={() => handleCommandClick(command)}
+                        >
                             <span style={{ color: currentColors.command }}>
                                 &gt; {command}
                             </span>
