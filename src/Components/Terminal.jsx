@@ -314,9 +314,22 @@ const Terminal = () => {
             link: "blue",
             border: "green",
         },
+        pinkish: {
+            background: "black",
+            text: "hotpink",
+            command: "pink",
+            link: "lightcoral",
+            border: "deeppink",
+        },
+        bluish: {
+            background: "navy",
+            text: "deepskyblue",
+            command: "aqua",
+            link: "lightskyblue",
+            border: "cyan",
+        }
     };
-
-    const currentColors = isDarkMode ? colors.dark : colors.light;
+    const currentColors = isDarkMode ? colors.pinkish : colors.light;
 
     // Scroll to the bottom of the terminal whenever the history changes
     useEffect(() => {
