@@ -293,6 +293,11 @@ const Terminal = () => {
     };
 
     const handleCommandClick = (_command) => {
+        if(_command === 'clear')
+        {
+            setHistory([])
+            return;
+        }
         setHistory([...history, { command: _command, output: commands[_command] }]);
     };
 
