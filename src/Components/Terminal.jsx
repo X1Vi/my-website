@@ -259,7 +259,27 @@ const commands = {
     Why not see my bluesky to see more of what I've been up to or sponsor me ?
     Check out the 'socials' command for more info.`,
     clear: "Terminal cleared.",
+    
 };
+const asciiArt = {
+    art: `
+                                                    
+   ,--,     ,--,       ,---,                        
+   |'. \\   / .\`|    ,\`--.' |        ,---.   ,--,    
+   ; \\ \`\\ /' / ;   /    /  :       /__./| ,--.'|    
+   \`. \\  /  / .'  :    |.' '  ,---.;  ; | |  |,     
+    \\  \\/  / ./   \`----':  | /___/ \\  | | \`--'_     
+     \\  \\.'  /       '   ' ; \\   ;  \\ ' | ,' ,'|    
+      \\  ;  ;        |   | |  \\   \\  \\: | '  | |    
+     / \\  \\  \\       '   : ;   ;   \\  ' . |  | :    
+    ;  /\\  \\  \\      |   | '    \\   \\   ' '  : |__  
+  ./__;  \\  ;  \\     '   : |     \\   \`  ; |  | '.'| 
+  |   : / \\  \\  ;    ;   |.'      :   \\ | ;  :    ; 
+  ;   |/   \\  ' |    '---'         '---"  |  ,   /  
+  \`---'     \`--\`                           ---\`-'   
+                                                    
+  `
+  };
 
 const Terminal = () => {
     const [history, setHistory] = useState([]);
@@ -275,9 +295,10 @@ const Terminal = () => {
         commandInputRef.current.focus();
     }, []);
 
-    useState(() => {
-        setCommandsIndex(_commandsIndex + 1);
-    }, [_commandsIndex])
+    useEffect(() => {
+        setHistory([...history, {command: "name", output: asciiArt.art}])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const executeCommand = () => {
         if (input === "clear") {
@@ -494,7 +515,7 @@ const Terminal = () => {
                     if (e.key === "Enter") {
                         executeCommand()
                         setCommands([..._commands, input])
-                        setCommandsIndex(_commands.length);
+                        setCommandsIndex(_commands.length + 1)
                     }
                     else if (e.key === "ArrowUp") {
                         if (_commands.length > 0 && _commandsIndex > 0) {
