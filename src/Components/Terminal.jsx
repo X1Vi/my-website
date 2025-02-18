@@ -2,8 +2,16 @@ import React, { useState, useRef, useEffect } from "react";
 
 const commands = {
     about: `
-        
+
+    Hi, I go around by my nick name X1Vi.
+
+    I’m a Full Stack & Mobile Developer, Open Source Contributor, Hobbyist Game Developer.  
     
+    I have 1.4+ year of professional experience in a fast paced environments with aggressive deadlines.
+
+    I like to work in different fields like Web, Game, Moble Development, Art, FreeCAD.
+    
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -51,25 +59,8 @@ const commands = {
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                                                                        Made with ❤️ by X1Vi
 
-    Hi! I’m a Full Stack & Mobile Developer, Open Source Contributor, and Hobbyist Game Developer.  
-    Here’s a quick look at what I’ve done:
-    
-    I’ve contributed to open-source projects with millions of users, including Bluesky, FreeCodeCamp, and Mattermost.  
-    I’ve merged PRs and have ongoing contributions to these projects.
-    
-    I’ve built full-stack apps from scratch, creating and integrating APIs, and transforming Figma designs into fully functional applications.  
-    I’ve worked with third-party services, websockets, custom graph libraries, and payment integrations. I’ve also built Slack bots for fun!
-    
-    I have experience designing scalable systems using microservices, ensuring efficiency and maintainability.
-    
-    On the security front, I’m familiar with tools like Metasploit, Burp Suite, ZAP, and MOBSf. For development, I use Docker, Git, and GitHub daily.
-    
-    When I’m not coding, I enjoy experimenting with game development in Godot and Bevy, creating pixel art, and editing videos.  
-    I’ve also worked on hobby projects using FreeCAD and even integrated Bluetooth for thermal printers in React Native apps.
-    
-    Feel free to check out my Bluesky profile to see more of what I’ve been up to!`,
+    `,
 
 
 
@@ -96,7 +87,7 @@ const commands = {
         },
         {
             "name": "Design & Prototyping",
-            "details": "Figma, GIMP, Pixel, Roma, Aseprite"
+            "details": "Figma, GIMP, Pixel, Pixelroma, Aseprite"
         },
         {
             "name": "API Testing & Tools",
@@ -122,7 +113,7 @@ const commands = {
             "name": "Security & Penetration Testing",
             "details": "Burp Suite, Metasploit, MOBSf, ZAP"
         },
-    ],    
+    ],
 
     // experience: [
     //     "Developed and managed a microservices architecture with 8 microservices.",
@@ -138,7 +129,11 @@ const commands = {
     open_source: [
         {
             name: "Bluesky",
-            contributions: "Added a QR code generation feature for easy profile sharing, designed a custom scroll bar to improve usability, and fixed an issue where users couldn’t unfollow blocked accounts.",
+            contributions: `
+            Working on issues were lying around since 2023 in bluesky.
+            
+            Added a QR code generation feature for easy profile sharing, designed a custom scroll bar for bluesky's homepage,
+            fixed an issue where users couldn’t unfollow blocked accounts.`,
             link: "https://github.com/bluesky-social/social-app/pulls/X1Vi"
         },
         {
@@ -177,7 +172,7 @@ const commands = {
         },
     ],
 
-    games: [
+    my_games: [
         {
             name: "Puzzle Game",
             link: "https://saintelgrandosmokio.itch.io/puzzlegame",
@@ -203,7 +198,7 @@ const commands = {
     ],
 
     help: "Available commands: about, techstack, experience, open_source, education, socials, games, clear, help",
-    what_is_it: `
+    something: `
     
     ++++++++++++++++++++++:................:+++++++++++++++++++++++++++++++++++
     ++++++++++++++++++++++++++++++++++++++++++++++-..................=++++++++++++++++++++++++++++++++++
@@ -293,8 +288,7 @@ const Terminal = () => {
     };
 
     const handleCommandClick = (_command) => {
-        if(_command === 'clear')
-        {
+        if (_command === 'clear') {
             setHistory([])
             return;
         }
@@ -367,12 +361,12 @@ const Terminal = () => {
 
             <div style={{ marginBottom: "20px" }}>
                 <p>
-                    <strong>Available Commands:</strong>
+                    <strong>Available Commands (You can also click below if you are too lazy)</strong>
                 </p>
                 <ul>
                     {Object.keys(commands).map((command, index) => (
-                        <li 
-                            key={index} 
+                        <li
+                            key={index}
                             style={{ listStyleType: "none", cursor: "pointer" }}
                             onClick={() => handleCommandClick(command)}
                         >
