@@ -272,7 +272,11 @@ const Terminal = () => {
     const [isDarkMode, setIsDarkMode] = useState(true);
 
     const historyRef = useRef(null); // Ref for the history container
+    const commandInputRef = useRef(null); // Ref for the command input
 
+    useEffect(() => {
+        commandInputRef.current.focus();
+    }, []);
     const executeCommand = () => {
         if (input === "clear") {
             setHistory([]); // Clears the terminal history
@@ -413,6 +417,7 @@ const Terminal = () => {
             </div>
 
             <input
+                ref={commandInputRef}
                 style={{
                     backgroundColor: currentColors.background,
                     color: currentColors.text,
