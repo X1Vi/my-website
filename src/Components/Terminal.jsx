@@ -197,7 +197,7 @@ const commands = {
         },
     ],
 
-    help: "Available commands: about, techstack, experience, open_source, education, socials, games, clear, help",
+    help: "Available commands: about, techstack, open_source, education, socials, games, clear, help, something",
     something: `
     
     ++++++++++++++++++++++:................:+++++++++++++++++++++++++++++++++++
@@ -265,13 +265,19 @@ const Terminal = () => {
     const [history, setHistory] = useState([]);
     const [input, setInput] = useState("");
     const [isDarkMode, setIsDarkMode] = useState(true);
-
+    const [toggleAvailableCommands, setToggleAvailableCommands] = useState(false);
     const historyRef = useRef(null); // Ref for the history container
     const commandInputRef = useRef(null); // Ref for the command input
+    const [_commands, setCommands] = useState([]);
+    const [_commandsIndex, setCommandsIndex] = useState(-1);
 
     useEffect(() => {
         commandInputRef.current.focus();
     }, []);
+
+    useState(() => {
+        setCommandsIndex(_commandsIndex + 1);
+    }, [_commandsIndex])
 
     const executeCommand = () => {
         if (input === "clear") {
@@ -356,40 +362,75 @@ const Terminal = () => {
                 width: "100vw"
             }}
         >
-            <button
-                onClick={toggleTheme}
-                style={{
-                    padding: "10px",
-                    marginBottom: "20px",
-                    alignSelf: "flex-end",
-                    backgroundColor: currentColors.background,
-                    color: currentColors.text,
-                    border: `2px solid ${currentColors.border}`,
-                    cursor: "pointer",
-                    fontSize: "16px",
-                }}
-            >
-                Toggle Theme
-            </button>
+            <div style={{ display: "flex", flexDirection: 'row-reverse', justifyContent: "space-between", marginBottom: "20px" }}>
+                <button
+                    onClick={toggleTheme}
+                    style={{
+                        padding: "10px",
+                        backgroundColor: currentColors.background,
+                        color: currentColors.text,
+                        border: `2px solid ${currentColors.border}`,
+                        cursor: "pointer",
+                        fontSize: "16px",
+                    }}
+                >
+                    Toggle Theme
+                </button>
 
-            <div style={{ marginBottom: "20px" }}>
-                <p>
-                    <strong>Available Commands (You can also click below if you are too lazy)</strong>
-                </p>
-                <ul>
-                    {Object.keys(commands).map((command, index) => (
-                        <li
-                            key={index}
-                            style={{ listStyleType: "none", cursor: "pointer" }}
-                            onClick={() => handleCommandClick(command)}
-                        >
-                            <span style={{ color: currentColors.command }}>
-                                &gt; {command}
-                            </span>
-                        </li>
-                    ))}
-                </ul>
             </div>
+
+            {toggleAvailableCommands ?
+                <>
+
+                    <div style={{ marginBottom: "20px" }}>
+                        <p>
+                            <strong>Available Commands (You can also click below if you are too lazy)</strong>
+                        </p>
+                        <ul>
+                            {Object.keys(commands).map((command, index) => (
+                                <li
+                                    key={index}
+                                    style={{ listStyleType: "none", cursor: "pointer" }}
+                                    onClick={() => handleCommandClick(command)}
+                                >
+                                    <span style={{ color: currentColors.command }}>
+                                        &gt; {command}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <button
+                        onClick={() => setToggleAvailableCommands(!toggleAvailableCommands)}
+                        style={{
+                            padding: "10px",
+                            backgroundColor: currentColors.background,
+                            color: currentColors.text,
+                            border: `2px solid ${currentColors.border}`,
+                            cursor: "pointer",
+                            fontSize: "16px",
+                        }}
+                    >
+                        {toggleAvailableCommands ? "Hide Commands" : "Show Commands"}
+                    </button>
+                </>
+
+                :
+
+                <button
+                    onClick={() => setToggleAvailableCommands(!toggleAvailableCommands)}
+                    style={{
+                        padding: "10px",
+                        backgroundColor: currentColors.background,
+                        color: currentColors.text,
+                        border: `2px solid ${currentColors.border}`,
+                        cursor: "pointer",
+                        fontSize: "16px",
+                    }}
+                >
+                    {toggleAvailableCommands ? "Hide Commands" : "Show Commands"}
+                </button>
+            }
 
             <div ref={historyRef} style={{ flexGrow: 1, overflowY: "auto" }}>
                 {history.map((entry, index) => (
@@ -449,7 +490,27 @@ const Terminal = () => {
                 }}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && executeCommand()}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        executeCommand()
+                        setCommands([..._commands, input])
+                        setCommandsIndex(_commands.length);
+                    }
+                    else if (e.key === "ArrowUp") {
+                        if (_commands.length > 0 && _commandsIndex > 0) {
+                            setCommandsIndex(_commandsIndex - 1);
+                            setInput(_commands[_commandsIndex - 1]);
+                        }
+                    }
+                    else if (e.key === "ArrowDown") {
+                        if (_commands.length > 0 && _commandsIndex < _commands.length - 1) {
+                            setCommandsIndex(_commandsIndex + 1);
+                            setInput(_commands[_commandsIndex + 1]);
+                        } else {
+                            setInput("");
+                        }
+                    }
+                }}
                 placeholder="Type a command..."
             />
         </div>
