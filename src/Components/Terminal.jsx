@@ -294,9 +294,12 @@ const Terminal = () => {
     const [clearedOnce, setClearedOnce] = useState(false);
 
     useEffect(() => {
-        if (history.length === 0) { setClearedOnce(true) };
+        setClearedOnce(true)
     }, [history])
 
+    useEffect(()=>{
+        setClearedOnce(false)
+    },[])
     useEffect(() => {
         commandInputRef.current.focus();
     }, []);
