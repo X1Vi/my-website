@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import AsciiAnimator from "./AsciiAnimator";
 
 const commands = {
     about: `
@@ -259,7 +260,7 @@ const commands = {
     Why not see my bluesky to see more of what I've been up to or sponsor me ?
     Check out the 'socials' command for more info.`,
     clear: "Terminal cleared.",
-    
+
 };
 const asciiArt = {
     art: `
@@ -279,10 +280,10 @@ const asciiArt = {
   \`---'     \`--\`                           ---\`-'   
                                                     
   `
-  };
+};
 
 const Terminal = () => {
-    const [history, setHistory] = useState([]);
+    const [history, setHistory] = useState([{ command: "name", output: asciiArt.art }]);
     const [input, setInput] = useState("");
     const [isDarkMode, setIsDarkMode] = useState(true);
     const [toggleAvailableCommands, setToggleAvailableCommands] = useState(false);
@@ -290,21 +291,24 @@ const Terminal = () => {
     const commandInputRef = useRef(null); // Ref for the command input
     const [_commands, setCommands] = useState([]);
     const [_commandsIndex, setCommandsIndex] = useState(-1);
+    const [clearedOnce, setClearedOnce] = useState(false);
+
+    useEffect(() => {
+        if (history.length === 0) { setClearedOnce(true) };
+    }, [history])
 
     useEffect(() => {
         commandInputRef.current.focus();
     }, []);
-    
-    useEffect(()=>{
-        if(input === "")
-        {
-            setCommandsIndex(_commands.length);
-        }
-    },[input])
 
     useEffect(() => {
-        setHistory([...history, {command: "name", output: asciiArt.art}])
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        if (input === "") {
+            setCommandsIndex(_commands.length);
+        }
+    }, [input])
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const executeCommand = () => {
@@ -463,6 +467,9 @@ const Terminal = () => {
             <div ref={historyRef} style={{ flexGrow: 1, overflowY: "auto" }}>
                 {history.map((entry, index) => (
                     <div key={index} style={{ marginBottom: "10px" }}>
+                        {!clearedOnce ? 
+                        <AsciiAnimator />
+                        : null}
                         <p>
                             <span style={{ fontWeight: "bold" }}>&gt; {entry.command}</span>
                         </p>
