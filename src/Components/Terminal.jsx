@@ -294,6 +294,13 @@ const Terminal = () => {
     useEffect(() => {
         commandInputRef.current.focus();
     }, []);
+    
+    useEffect(()=>{
+        if(input === "")
+        {
+            setCommandsIndex(_commands.length);
+        }
+    },[input])
 
     useEffect(() => {
         setHistory([...history, {command: "name", output: asciiArt.art}])
