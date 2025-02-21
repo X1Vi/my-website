@@ -312,6 +312,14 @@ const Terminal = () => {
     const [_commands, setCommands] = useState([]);
     const [_commandsIndex, setCommandsIndex] = useState(-1);
     const [clearedOnce, setClearedOnce] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Call handler right away so state gets updated with initial window size
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         setClearedOnce(true)
@@ -536,7 +544,7 @@ const Terminal = () => {
                 ))}
             </div>
             <div style={{ display: "flex", flexDirection: "row" }}>
-                {window.innerWidth > 768 ? (
+                {windowWidth > 768 ? (
                     <div style={{ fontWeight: "bold", display: "flex" }}>root@{Name.toLowerCase()} $</div>
                 ) : null}
             <input
