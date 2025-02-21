@@ -544,8 +544,8 @@ const Terminal = () => {
                 ))}
             </div>
             <div style={{ display: "flex", flexDirection: "row" }}>
-                {windowWidth > 768 ? (
-                    <div style={{ fontWeight: "bold", display: "flex" }}>root@{Name.toLowerCase()} $</div>
+                {windowWidth > 1024 ? (
+                    <p style={{ fontWeight: "bold", display: "flex" }}>root@{Name.toLowerCase()} $</p>
                 ) : null}
             <input
                 ref={commandInputRef}
