@@ -572,7 +572,7 @@ const Terminal = () => {
                             }
                         }
                     }}
-                    placeholder=""
+                    placeholder="Type 'help' to see the commands"
                 />
             </div>
         </div>
