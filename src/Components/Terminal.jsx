@@ -113,7 +113,7 @@ const commands = {
     cesses, leading to improved operational efficiency.
 
     Open Source Contributions (Ongoing & Merged)
-    (Click on hyperlinks to access live projects, PRs, and GitHub repositories.)
+    (Check the "open_source" command for more info)
 
     Bluesky (30M+ users) (React Native, TypeScript, Golang)
     Bluesky Ongoing PRs – Implemented a QR code generation feature, allowing users to quickly share
@@ -579,6 +579,15 @@ const Terminal = () => {
                             setInput(_commands[_commandsIndex + 1]);
                         } else {
                             setInput("");
+                        }
+                    }
+                    else if (e.key === "Tab") {
+                        e.preventDefault();
+                        const matchingCommands = Object.keys(commands).filter(command =>
+                            command.startsWith(input)
+                        );
+                        if (matchingCommands.length === 1) {
+                            setInput(matchingCommands[0]);
                         }
                     }
                 }}
