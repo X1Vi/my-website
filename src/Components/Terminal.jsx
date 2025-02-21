@@ -1,66 +1,20 @@
 import React, { useState, useRef, useEffect } from "react";
 import AsciiAnimator from "./AsciiAnimator";
-
+const Name = "X1Vi";
 const commands = {
     about: `
 
-    Hi, I go around by my nick name X1Vi.
-
-    I’m a Full Stack & Mobile Developer, Open Source Contributor, Hobbyist Game Developer.  
+    I am a Full Stack Mobile Developer with more than a year of experience. I have worked in fast-
+    paced startup environments with aggressive deadlines, allowing me to adapt quickly and deliver
+    high-quality solutions under pressure.
     
-    I have 1.4+ year of professional experience in a fast paced environments with aggressive deadlines.
+    I am contributing to open-source projects such as Bluesky (30M+ users), FreeCodeCamp,
+    UseMemos, Mattermost, and LazyGit, working with large-scale systems and collaborating with
+    global communities to enhance software quality and user experience. My experience maintaining and
+    improving codebases with millions of users has strengthened my ability to follow best practices for
+    scalability and performance.
 
-    I like to work in different fields like Web, Game, Moble Development, Art, FreeCAD.
-    
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#+++++%%%%%%%%%%%%%%%%%%%%%#+++++%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%+....-%%%%%%%%%%%%%%%%%%%%%*::..:%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%.......:::.%%=::....:..:#%%-.::..:::::#%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%+==..:====-:::==:::.......:===:::=====:::==*%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-..::-+++++:::::::::::::::::::::-+++++:::::=%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%+:::..+++++++++++::=++++++++++:::=++++++++++:::..+%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%+.....+++++++++++===++++++++++===+++++++++++:....+%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%+.....++++++++++++++++++++++++++++++++++++++:::..+%%
-    %%%%%%%%%%%%%%%%%%%%%%:...........::.......-++++++++@@*++++++++++@@@*+++++++:::::=%%%%%
-    %%%%%%%%%%%%%%%%%%%---:...................::::=+++++@@*++++++++++@@@*++++=:::::*##%%%%%
-    %%%%%%%%%%%%%%#####:::::::::::::::::::::::::::=+++++%%*++++++++++%%%+++++-..:::#%%%%%%%
-    %%%%%%%%%%%%%*::..::::+++++++++++++++++++++++++++++++++++++++++++++++++++-..:::#%%%%%%%
-    %%%%%%%%%%%:.:::..:++++++++++++++++++++++++++++++++++++**********++++++++-..:::#%%%%%%%
-    %%%%%%%%%##::::::::+++++++++++++++++++++++++++++++++++***********++++++++-..:::#%%%%%%%
-    %%%%%%%%-:::.:++++++++++++++++++++++++++++++++++++++**%@@#*****@@***+++++-..:::#%%%%%%%
-    %%%%%+:::::===++++++++++++++++++++++++++++++++++++++**%@@#*****@@***+++++-:::::#%%%%%%%
-    %%%%%*==:::--=++++++++++++++++++++++++++++++++++++++++#%%******%%*++++=---::==+%%%%%%%%
-    %%%%%%%%-....:+++++++++++++++++++++++++++++++++++++++++**********+++++=:....%%%%%%%%%%%
-    %%%%%%%%%%%.......:+++++++++++++++++++++++++++++++++++++++++++++++++:...:=%%%%%%%%%%%%%
-    %%%%%%%%%%%++=....:---+++++++++++++++++++++++++++++++++++=----------:.-++*%%%%%%%%%%%%%
-    %%%%%%%%%%%%%*.......:+++++++++++++++++++++++++++++++++++-:...........=%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%::::::::=++++++++++:::+++++++++++:::::::.....:.::#%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%*++:...:=++++++++++:..+++++++++++:...:=++++++++++%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%:...:=++++++++++:..+++++++++++:::::*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%:...:=++++=::::::..+++++-:::::::*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%##+:::::::::.......::::::::..:##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%*::::.::::::.::::.....::::::%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%-..::-%%%%%%%%.....*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%######%%%%%%%%#####%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+    You can support me by sponsoring me on Buy Me a Coffee, check "socials" command.
     `,
 
 
@@ -116,16 +70,82 @@ const commands = {
         },
     ],
 
-    // experience: [
-    //     "Developed and managed a microservices architecture with 8 microservices.",
-    //     "Designed an image compression system reducing file sizes by up to 90%.",
-    //     "Integrated anti-root detection in a React Native app for security.",
-    //     "Developed an image metadata stripping feature for privacy.",
-    //     "Implemented Tilled and Eazebuzz payment APIs.",
-    //     "Created a Slack bot for real-time Django server error notifications.",
-    //     "Patched a session login vulnerability, improving security.",
-    //     "Developed a custom graphing library using react-native-svg.",
-    // ],
+    resume: `
+    Summary
+    I am a Full Stack Mobile Developer specializing in React Native and React, transforming Figma
+    designs into functional apps with seamless payment gateways, REST APIs, third-party integra-
+    tions, Bluetooth (thermal printers), image optimization, and custom graph libraries. Beyond
+    mobile development, I have experience with security tools like Metasploit, Burp Suite, ZAP, and
+    MOBSf, as well as dev tools like Docker, Git, and GitHub. I’m proficient in Linux, contribute to
+    open-source projects like Bluesky, FreeCodeCamp, Mattermost, and Memos, and continuously
+    expand my knowledge in machine learning and AI. I have worked on codebases with over 30 million
+    users and increasing, showcasing my ability to contribute to large-scale projects with significant impact.
+
+    Experience
+    Full Stack Mobile Developer
+    React Native, Django, Docker, Git, GitHub, Linux
+    May 2024 – December
+    • Developed and managed a microservices architecture with about 8 microservices, ensuring scal-
+    ability and maintainability of the system.
+    • Implemented an image compression system that reduced file sizes by up to 90%, significantly
+    cutting down bandwidth costs and server load, saving substantial resources.
+    • Integrated an advanced anti-root detection mechanism in the React Native app, preventing
+    exploitation on rooted devices and ensuring a secure user experience.
+    • Developed an image metadata and geo-location stripping feature, ensuring that sensitive
+    user information is removed from uploaded images, enhancing privacy.
+    • Led the integration of Tilled payment API for U.S. customers, implementing a full-stack solution
+    covering both frontend UI and backend transaction processing.
+    • Implemented Eazebuzz payment API within the Django backend, enabling seamless transactions
+    for users.
+    • Created a Slack bot using Python to notify teams of Django server errors in real time, allowing
+    non-technical team members to access logs without SSH access.
+    • Identified and patched a session login vulnerability that could allow unauthorized access, im-
+    proving application security.
+    • Developed a custom graphing library using react-native-svg, which powered a merchant landing
+    page with interactive heatmaps and analytics visualizations, improving insights for business owners.
+
+    Mobile Developer Intern
+    React Native, Git, GitHub
+    3 Months
+    • Engineered a Bluetooth communication system enabling seamless integration with thermal
+    printers, allowing for quick and efficient bill printing directly from the mobile app.
+    • Developed various inventory management systems, streamlining stock and staff tracking pro-
+    cesses, leading to improved operational efficiency.
+
+    Open Source Contributions (Ongoing & Merged)
+    (Click on hyperlinks to access live projects, PRs, and GitHub repositories.)
+
+    Bluesky (30M+ users) (React Native, TypeScript, Golang)
+    Bluesky Ongoing PRs – Implemented a QR code generation feature, allowing users to quickly share
+    their profiles, improving user connectivity and engagement. Designed and built a custom scroll bar
+    for the Bluesky homepage to make it clear that the component was scrollable, solving a usability issue
+    where users were previously confused. Additionally, resolved a critical issue where users were unable
+    to unfollow blocked accounts, ensuring a smoother and more consistent user experience.
+
+    UseMemos (4.6M Docker Pulls) (React, TypeScript, Golang, Air)
+    Merged PRs – Fixed Mermaid diagram theme inconsistencies, resolved memo collapsing issues,
+    and fixed a bug where the Disallow Password Authentication switch was incorrectly enabled for
+    users without an identity provider configured. This fix ensured that authentication settings could only
+    be changed when an identity provider was properly set up, preventing misconfiguration and improving
+    security.
+
+    LazyGit (1M+ users) (Golang)
+    Lazygit Ongoing PRs – Added a feature to filter commit history by date range, allowing users to
+    efficiently navigate and inspect specific commits within a defined time frame.
+
+    FreeCodeCamp (1M+ users) (React, TypeScript, Gatsby, MongoDB)
+    Merged PRs – Introduced persistent pane state saving, eliminating the need for users to manually
+    readjust layouts. Implemented an enhanced debugging system allowing developers to repeatedly
+    run tests on the same challenge without being automatically redirected to the next one, significantly
+    improving workflow efficiency.
+
+    Mattermost (500K+ users) (React, TypeScript)
+    Merged PRs – Enhanced emoji picker functionality by allowing persistent selection across sessions.
+
+    Education
+    Bachelor of Technology (B.Tech) in Computer Science and Engineering (2019–2023)
+
+    `,
 
     open_source: [
         {
@@ -173,7 +193,7 @@ const commands = {
         },
     ],
 
-    my_games: [
+    games: [
         {
             name: "Puzzle Game",
             link: "https://saintelgrandosmokio.itch.io/puzzlegame",
@@ -198,7 +218,7 @@ const commands = {
         },
     ],
 
-    help: "Available commands: about, techstack, open_source, education, socials, games, clear, help, something",
+    help: "Available commands: about, techstack, open_source, education, resume, socials, games, clear, help, something",
     something: `
     
     ++++++++++++++++++++++:................:+++++++++++++++++++++++++++++++++++
@@ -297,9 +317,9 @@ const Terminal = () => {
         setClearedOnce(true)
     }, [history])
 
-    useEffect(()=>{
+    useEffect(() => {
         setClearedOnce(false)
-    },[])
+    }, [])
     useEffect(() => {
         commandInputRef.current.focus();
     }, []);
@@ -470,11 +490,11 @@ const Terminal = () => {
             <div ref={historyRef} style={{ flexGrow: 1, overflowY: "auto" }}>
                 {history.map((entry, index) => (
                     <div key={index} style={{ marginBottom: "10px" }}>
-                        {!clearedOnce ? 
-                        <AsciiAnimator />
-                        : null}
+                        {!clearedOnce ?
+                            <AsciiAnimator />
+                            : null}
                         <p>
-                            <span style={{ fontWeight: "bold" }}>&gt; {entry.command}</span>
+                            <span style={{ fontWeight: "bold" }}>root@x1vi $ {entry.command}</span>
                         </p>
                         {Array.isArray(entry.output) ? (
                             <div style={{ marginLeft: "10px" }}>
@@ -515,42 +535,46 @@ const Terminal = () => {
                     </div>
                 ))}
             </div>
-
-            <input
-                ref={commandInputRef}
-                style={{
-                    backgroundColor: currentColors.background,
-                    color: currentColors.text,
-                    border: "none",
-                    borderBottom: `1px solid ${currentColors.border}`,
-                    fontSize: "16px",
-                    outline: "none",
-                }}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                        executeCommand()
-                        setCommands([..._commands, input])
-                        setCommandsIndex(_commands.length + 1)
-                    }
-                    else if (e.key === "ArrowUp") {
-                        if (_commands.length > 0 && _commandsIndex > 0) {
-                            setCommandsIndex(_commandsIndex - 1);
-                            setInput(_commands[_commandsIndex - 1]);
+            <div style={{ display: "flex", flexDirection: "row" }}>
+                <div style={{ fontWeight: "bold", display: "flex" }}>root@{Name.toLowerCase()} $</div>
+                <input
+                    ref={commandInputRef}
+                    style={{
+                        backgroundColor: currentColors.background,
+                        color: currentColors.text,
+                        border: "none",
+                        borderBottom: `0px solid ${currentColors.border}`,
+                        fontSize: "16px",
+                        outline: "none",
+                        width: "90%",
+                        marginLeft:"4px"
+                    }}
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            executeCommand()
+                            setCommands([..._commands, input])
+                            setCommandsIndex(_commands.length + 1)
                         }
-                    }
-                    else if (e.key === "ArrowDown") {
-                        if (_commands.length > 0 && _commandsIndex < _commands.length - 1) {
-                            setCommandsIndex(_commandsIndex + 1);
-                            setInput(_commands[_commandsIndex + 1]);
-                        } else {
-                            setInput("");
+                        else if (e.key === "ArrowUp") {
+                            if (_commands.length > 0 && _commandsIndex > 0) {
+                                setCommandsIndex(_commandsIndex - 1);
+                                setInput(_commands[_commandsIndex - 1]);
+                            }
                         }
-                    }
-                }}
-                placeholder="Type a command..."
-            />
+                        else if (e.key === "ArrowDown") {
+                            if (_commands.length > 0 && _commandsIndex < _commands.length - 1) {
+                                setCommandsIndex(_commandsIndex + 1);
+                                setInput(_commands[_commandsIndex + 1]);
+                            } else {
+                                setInput("");
+                            }
+                        }
+                    }}
+                    placeholder=""
+                />
+            </div>
         </div>
     );
 };
