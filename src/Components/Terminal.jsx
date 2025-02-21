@@ -536,46 +536,48 @@ const Terminal = () => {
                 ))}
             </div>
             <div style={{ display: "flex", flexDirection: "row" }}>
-                <div style={{ fontWeight: "bold", display: "flex" }}>root@{Name.toLowerCase()} $</div>
-                <input
-                    ref={commandInputRef}
-                    style={{
-                        backgroundColor: currentColors.background,
-                        color: currentColors.text,
-                        border: "none",
-                        borderBottom: `0px solid ${currentColors.border}`,
-                        fontSize: "16px",
-                        outline: "none",
-                        width: "90%",
-                        marginLeft:"4px"
-                    }}
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                            executeCommand()
-                            setCommands([..._commands, input])
-                            setCommandsIndex(_commands.length + 1)
+                {window.innerWidth > 768 ? (
+                    <div style={{ fontWeight: "bold", display: "flex" }}>root@{Name.toLowerCase()} $</div>
+                ) : null}
+            <input
+                ref={commandInputRef}
+                style={{
+                    backgroundColor: currentColors.background,
+                    color: currentColors.text,
+                    border: "none",
+                    borderBottom: `0px solid ${currentColors.border}`,
+                    fontSize: "16px",
+                    outline: "none",
+                    width: "90%",
+                    marginLeft: "4px"
+                }}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        executeCommand()
+                        setCommands([..._commands, input])
+                        setCommandsIndex(_commands.length + 1)
+                    }
+                    else if (e.key === "ArrowUp") {
+                        if (_commands.length > 0 && _commandsIndex > 0) {
+                            setCommandsIndex(_commandsIndex - 1);
+                            setInput(_commands[_commandsIndex - 1]);
                         }
-                        else if (e.key === "ArrowUp") {
-                            if (_commands.length > 0 && _commandsIndex > 0) {
-                                setCommandsIndex(_commandsIndex - 1);
-                                setInput(_commands[_commandsIndex - 1]);
-                            }
+                    }
+                    else if (e.key === "ArrowDown") {
+                        if (_commands.length > 0 && _commandsIndex < _commands.length - 1) {
+                            setCommandsIndex(_commandsIndex + 1);
+                            setInput(_commands[_commandsIndex + 1]);
+                        } else {
+                            setInput("");
                         }
-                        else if (e.key === "ArrowDown") {
-                            if (_commands.length > 0 && _commandsIndex < _commands.length - 1) {
-                                setCommandsIndex(_commandsIndex + 1);
-                                setInput(_commands[_commandsIndex + 1]);
-                            } else {
-                                setInput("");
-                            }
-                        }
-                    }}
-                    placeholder="Type 'help' to see the commands"
-                />
-            </div>
+                    }
+                }}
+                placeholder="Type 'help' to see the commands"
+            />
         </div>
+        </div >
     );
 };
 
