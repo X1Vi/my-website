@@ -218,7 +218,7 @@ const commands = {
         },
     ],
 
-    help: "Available commands: about, techstack, open_source, education, resume, socials, games, clear, help, something",
+    help: "Available commands: about, techstack, open_source, education, resume, socials, games, clear, help, something, video_editing",
     something: `
     
     ++++++++++++++++++++++:................:+++++++++++++++++++++++++++++++++++
