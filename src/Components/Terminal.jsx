@@ -313,6 +313,29 @@ const Terminal = () => {
     const [_commandsIndex, setCommandsIndex] = useState(-1);
     const [clearedOnce, setClearedOnce] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [holdHistory, setHoldHistory] = useState([])
+    const [normalMode, setSwitchNormalMode] = useState(false)
+
+    const allCommandsAndData = [
+        { command: "about", output: commands.about },
+        { command: "techstack", output: commands.techstack },
+        { command: "resume", output: commands.resume },
+        { command: "open_source", output: commands.open_source },
+        { command: "education", output: commands.education },
+        { command: "socials", output: commands.socials },
+        { command: "games", output: commands.games },
+    ];
+
+    useEffect(()=>{
+
+        if(normalMode){
+            setHoldHistory(history)
+            setHistory(allCommandsAndData)
+        }
+        else if (!normalMode && clearedOnce){
+            setHistory(holdHistory)
+        }
+    },[normalMode])
 
     useEffect(() => {
         const handleResize = () => setWindowWidth(window.innerWidth);
@@ -439,6 +462,20 @@ const Terminal = () => {
                 >
                     Toggle Theme
                 </button>
+                
+                <button
+                onClick={() => setSwitchNormalMode(!normalMode)}
+                style={{
+                    padding: "10px",
+                    backgroundColor: currentColors.background,
+                    color: currentColors.text,
+                    border: `2px solid ${currentColors.border}`,
+                    cursor: "pointer",
+                    fontSize: "16px",
+                }}
+            >
+                {normalMode ? "Hacker Mode" : "Normal Mode"}
+            </button>
 
             </div>
 
@@ -547,53 +584,57 @@ const Terminal = () => {
                 {windowWidth > 1024 ? (
                     <p style={{ fontWeight: "bold", display: "flex" }}>root@{Name.toLowerCase()} $</p>
                 ) : null}
-            <input
-                ref={commandInputRef}
-                style={{
-                    backgroundColor: currentColors.background,
-                    color: currentColors.text,
-                    border: "none",
-                    borderBottom: `0px solid ${currentColors.border}`,
-                    fontSize: "16px",
-                    outline: "none",
-                    width: "90%",
-                    marginLeft: "4px"
-                }}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                        executeCommand()
-                        setCommands([..._commands, input])
-                        setCommandsIndex(_commands.length + 1)
-                    }
-                    else if (e.key === "ArrowUp") {
-                        if (_commands.length > 0 && _commandsIndex > 0) {
-                            setCommandsIndex(_commandsIndex - 1);
-                            setInput(_commands[_commandsIndex - 1]);
+               {!normalMode ? 
+               
+               
+                <input
+                    ref={commandInputRef}
+                    style={{
+                        backgroundColor: currentColors.background,
+                        color: currentColors.text,
+                        border: "none",
+                        borderBottom: `0px solid ${currentColors.border}`,
+                        fontSize: "16px",
+                        outline: "none",
+                        width: "90%",
+                        marginLeft: "4px"
+                    }}
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            executeCommand()
+                            setCommands([..._commands, input])
+                            setCommandsIndex(_commands.length + 1)
                         }
-                    }
-                    else if (e.key === "ArrowDown") {
-                        if (_commands.length > 0 && _commandsIndex < _commands.length - 1) {
-                            setCommandsIndex(_commandsIndex + 1);
-                            setInput(_commands[_commandsIndex + 1]);
-                        } else {
-                            setInput("");
+                        else if (e.key === "ArrowUp") {
+                            if (_commands.length > 0 && _commandsIndex > 0) {
+                                setCommandsIndex(_commandsIndex - 1);
+                                setInput(_commands[_commandsIndex - 1]);
+                            }
                         }
-                    }
-                    else if (e.key === "Tab") {
-                        e.preventDefault();
-                        const matchingCommands = Object.keys(commands).filter(command =>
-                            command.startsWith(input)
-                        );
-                        if (matchingCommands.length === 1) {
-                            setInput(matchingCommands[0]);
+                        else if (e.key === "ArrowDown") {
+                            if (_commands.length > 0 && _commandsIndex < _commands.length - 1) {
+                                setCommandsIndex(_commandsIndex + 1);
+                                setInput(_commands[_commandsIndex + 1]);
+                            } else {
+                                setInput("");
+                            }
                         }
-                    }
-                }}
-                placeholder="Type 'help' to see the commands"
-            />
-        </div>
+                        else if (e.key === "Tab") {
+                            e.preventDefault();
+                            const matchingCommands = Object.keys(commands).filter(command =>
+                                command.startsWith(input)
+                            );
+                            if (matchingCommands.length === 1) {
+                                setInput(matchingCommands[0]);
+                            }
+                        }
+                    }}
+                    placeholder="Type 'help' to see the commands"
+                />
+               : null}
+            </div>
         </div >
     );
 };
