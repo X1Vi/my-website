@@ -371,48 +371,48 @@ const Terminal = () => {
 
     const colors = {
         dark: {
-            background: "black",
-            text: "lime",
-            command: "lightgreen",
-            link: "lightblue",
-            border: "lime",
-            codeblock: "dimgray" // A subtle dark shade for code blocks
+            background: "#1e1e1e",
+            text: "#d4d4d4",
+            command: "#569cd6",
+            link: "#9cdcfe",
+            border: "#3c3c3c",
+            codeblock: "#2d2d2d"
         },
         light: {
-            background: "white",
-            text: "black",
-            command: "green",
-            link: "blue",
-            border: "green",
-            codeblock: "lightgrey"
+            background: "#ffffff",
+            text: "#333333",
+            command: "#007acc",
+            link: "#0066cc",
+            border: "#cccccc",
+            codeblock: "#f5f5f5"
         },
         pinkish: {
-            background: "black",
-            text: "hotpink",
-            command: "pink",
-            link: "lightcoral",
-            border: "deeppink",
-            codeblock: "darkgrey"
+            background: "#2c001e",
+            text: "#ffb3b3",
+            command: "#ff66b2",
+            link: "#ff99cc",
+            border: "#ff4d94",
+            codeblock: "#3d0030"
         },
         bluish: {
-            background: "navy",
-            text: "deepskyblue",
-            command: "aqua",
-            link: "lightskyblue",
-            border: "cyan",
-            codeblock: "midnightblue"
+            background: "#001f3f",
+            text: "#d0e7ff",
+            command: "#66b2ff",
+            link: "#99ccff",
+            border: "#004080",
+            codeblock: "#002b5c"
         },
         terminal: {
-            background: "black",
-            text: "lime",
-            command: "lightgreen",
-            link: "lightblue",
-            border: "lime",
-            codeblock: "dimgray"
+            background: "#1e1e1e",
+            text: "#d4d4d4",
+            command: "#569cd6",
+            link: "#9cdcfe",
+            border: "#3c3c3c",
+            codeblock: "#2d2d2d"
         }
     };
 
-    const currentColors = isDarkMode ? colors.terminal: colors.light;
+    const currentColors = isDarkMode ? colors.terminal : colors.light;
 
     // Scroll to the bottom of the terminal whenever the history changes
     useEffect(() => {
@@ -458,16 +458,103 @@ const Terminal = () => {
                 <button
                     onClick={() => setSwitchNormalMode(!normalMode)}
                     style={{
-                        padding: "10px",
+                        padding: "10px 20px",
                         backgroundColor: currentColors.background,
                         color: currentColors.text,
                         border: `2px solid ${currentColors.border}`,
                         cursor: "pointer",
                         fontSize: "16px",
-
+                        position: "relative",
+                        overflow: "hidden",
+                        transition: "all 0.3s ease",
+                        borderRadius: "4px", // Added for a smoother look
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.boxShadow = `0 0 15px ${currentColors.border}`;
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.boxShadow = "none";
                     }}
                 >
                     {normalMode ? "Hacker Mode" : "Normal Mode"}
+
+                    {/* Scanner line animation */}
+                    <div style={{
+                        position: "absolute",
+                        top: 0,
+                        left: "-100%",
+                        width: "100%",
+                        height: "2px",
+                        backgroundColor: currentColors.text,
+                        opacity: 0.7,
+                        animation: "scanLine 2s linear infinite",
+                        filter: `drop-shadow(0 0 5px ${currentColors.text})`, // Added glow effect
+                    }}></div>
+
+                    {/* Terminal border flicker */}
+                    <div style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        border: `2px solid ${currentColors.border}`,
+                        opacity: 0,
+                        animation: "borderFlicker 3s infinite",
+                        filter: `drop-shadow(0 0 5px ${currentColors.border})`, // Added glow effect
+                    }}></div>
+
+                    {/* Terminal text glow pulse */}
+                    <div style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        backgroundColor: "transparent",
+                        boxShadow: `inset 0 0 10px ${currentColors.text}`, // Increased glow size
+                        opacity: 0,
+                        animation: "glowPulse 4s infinite",
+                    }}></div>
+
+                    {/* Hover ripple effect */}
+                    <div style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        width: "0",
+                        height: "0",
+                        borderRadius: "50%",
+                        backgroundColor: "rgba(255, 255, 255, 0.3)",
+                        transform: "translate(-50%, -50%)",
+                        transition: "width 0.4s ease, height 0.4s ease, opacity 0.4s ease",
+                        pointerEvents: "none",
+                        opacity: 0,
+                    }}></div>
+
+                    {/* Required keyframe animations */}
+                    <style dangerouslySetInnerHTML={{
+                        __html: `
+                @keyframes scanLine {
+                0% { left: -100%; }
+                100% { left: 100%; }
+                }
+                
+                @keyframes borderFlicker {
+                0% { opacity: 0; }
+                5% { opacity: 0.8; }
+                10% { opacity: 0.3; }
+                15% { opacity: 0.6; }
+                20% { opacity: 0; }
+                100% { opacity: 0; }
+                }
+                
+                @keyframes glowPulse {
+                0% { opacity: 0; }
+                50% { opacity: 0.5; }
+                100% { opacity: 0; }
+                }
+            `}} />
                 </button>
 
             </div>
