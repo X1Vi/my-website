@@ -2,19 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import AsciiAnimator from "./AsciiAnimator";
 const Name = "X1Vi";
 const commands = {
-    about: `
+    about: `<strong>I am a Full Stack Mobile Developer</strong>. I have worked in fast-paced startup environments with aggressive deadlines, allowing me to adapt quickly and deliver high-quality solutions under pressure.<br><br>  
 
-    I am a Full Stack Mobile Developer with more than a year of experience. I have worked in fast-
-    paced startup environments with aggressive deadlines, allowing me to adapt quickly and deliver
-    high-quality solutions under pressure.
+    I contribute to open-source projects such as <strong>Bluesky (30M+ users)</strong>, <strong>FreeCodeCamp</strong>, <strong>UseMemos</strong>, <strong>Mattermost</strong>, and <strong>LazyGit</strong>, working with large-scale systems and collaborating with global communities to enhance software quality and user experience.<br>  
+    My experience maintaining and improving codebases with <strong>millions of users</strong> has strengthened my ability to follow best practices for scalability and performance.<br><br>  
     
-    I am contributing to open-source projects such as Bluesky (30M+ users), FreeCodeCamp,
-    UseMemos, Mattermost, and LazyGit, working with large-scale systems and collaborating with
-    global communities to enhance software quality and user experience. My experience maintaining and
-    improving codebases with millions of users has strengthened my ability to follow best practices for
-    scalability and performance.
-
-    You can support me by sponsoring me on Buy Me a Coffee, check "socials" command.
+    You can support me by <strong>sponsoring me on Buy Me a Coffee</strong>, check the "socials" command.<br>
     `,
 
 
@@ -22,130 +15,105 @@ const commands = {
     techstack: [
         {
             "name": "Full Stack Development",
-            "details": "MERN Stack (MongoDB, Express.js, React, Node.js), Django, REST API, Socket.io"
+            "details": "<strong>MERN Stack</strong> (MongoDB, Express.js, React, Node.js), <strong>Django</strong>, <strong>REST API</strong>, <strong>Socket.io</strong>"
         },
         {
             "name": "Mobile Development",
-            "details": "React Native"
+            "details": "<strong>React Native</strong>"
         },
         {
             "name": "Game Development",
-            "details": "Godot, Bevy"
+            "details": "<strong>Godot</strong>, <strong>Bevy</strong>"
         },
         {
             "name": "Version Control & Collaboration",
-            "details": "Git, GitHub, Lazygit"
+            "details": "<strong>Git</strong>, <strong>GitHub</strong>, <strong>Lazygit</strong>"
         },
         {
             "name": "Cloud Infrastructure & DevOps",
-            "details": "Docker, CI/CD, Microservices"
+            "details": "<strong>Docker</strong>, <strong>CI/CD</strong>, <strong>Microservices</strong>"
         },
         {
             "name": "Design & Prototyping",
-            "details": "Figma, GIMP, Pixel, Pixelroma, Aseprite"
+            "details": "<strong>Figma</strong>, <strong>GIMP</strong>, <strong>Pixel</strong>, <strong>Pixelroma</strong>, <strong>Aseprite</strong>"
         },
         {
             "name": "API Testing & Tools",
-            "details": "Postman"
+            "details": "<strong>Postman</strong>"
         },
         {
             "name": "Database Management",
-            "details": "MongoDB, MySQL, PostgreSQL, SQLite"
+            "details": "<strong>MongoDB</strong>, <strong>MySQL</strong>, <strong>PostgreSQL</strong>, <strong>SQLite</strong>"
         },
         {
             "name": "Programming Languages",
-            "details": "Python, Rust, Golang, TypeScript, GDScript, JavaScript"
+            "details": "<strong>Python</strong>, <strong>Rust</strong>, <strong>Golang</strong>, <strong>TypeScript</strong>, <strong>GDScript</strong>, <strong>JavaScript</strong>"
         },
         {
             "name": "Web Scraping",
-            "details": "Web scraping using Python"
+            "details": "<strong>Web scraping using Python</strong>"
         },
         {
             "name": "Operating Systems",
-            "details": "Windows, Linux (Ubuntu, Parrot, Kali), WSL"
+            "details": "<strong>Windows</strong>, <strong>Linux</strong> (Ubuntu, Parrot, Kali), <strong>WSL</strong>"
         },
         {
             "name": "Security & Penetration Testing",
-            "details": "Burp Suite, Metasploit, MOBSf, ZAP"
-        },
-    ],
+            "details": "<strong>Burp Suite</strong>, <strong>Metasploit</strong>, <strong>MOBSf</strong>, <strong>ZAP</strong>"
+        }
+    ]
+    ,
 
-    resume: `
-    Summary
-    I am a Full Stack Mobile Developer specializing in React Native and React, transforming Figma
-    designs into functional apps with seamless payment gateways, REST APIs, third-party integra-
-    tions, Bluetooth (thermal printers), image optimization, and custom graph libraries. Beyond
-    mobile development, I have experience with security tools like Metasploit, Burp Suite, ZAP, and
-    MOBSf, as well as dev tools like Docker, Git, and GitHub. I’m proficient in Linux, contribute to
-    open-source projects like Bluesky, FreeCodeCamp, Mattermost, and Memos, and continuously
-    expand my knowledge in machine learning and AI. I have worked on codebases with over 30 million
-    users and increasing, showcasing my ability to contribute to large-scale projects with significant impact.
-
-    Experience
-    Full Stack Mobile Developer
-    React Native, Django, Docker, Git, GitHub, Linux
-    May 2024 – December
-    • Developed and managed a microservices architecture with about 8 microservices, ensuring scal-
-    ability and maintainability of the system.
-    • Implemented an image compression system that reduced file sizes by up to 90%, significantly
-    cutting down bandwidth costs and server load, saving substantial resources.
-    • Integrated an advanced anti-root detection mechanism in the React Native app, preventing
-    exploitation on rooted devices and ensuring a secure user experience.
-    • Developed an image metadata and geo-location stripping feature, ensuring that sensitive
-    user information is removed from uploaded images, enhancing privacy.
-    • Led the integration of Tilled payment API for U.S. customers, implementing a full-stack solution
-    covering both frontend UI and backend transaction processing.
-    • Implemented Eazebuzz payment API within the Django backend, enabling seamless transactions
-    for users.
-    • Created a Slack bot using Python to notify teams of Django server errors in real time, allowing
-    non-technical team members to access logs without SSH access.
-    • Identified and patched a session login vulnerability that could allow unauthorized access, im-
-    proving application security.
-    • Developed a custom graphing library using react-native-svg, which powered a merchant landing
-    page with interactive heatmaps and analytics visualizations, improving insights for business owners.
-
-    Mobile Developer Intern
-    React Native, Git, GitHub
-    3 Months
-    • Engineered a Bluetooth communication system enabling seamless integration with thermal
-    printers, allowing for quick and efficient bill printing directly from the mobile app.
-    • Developed various inventory management systems, streamlining stock and staff tracking pro-
-    cesses, leading to improved operational efficiency.
-
-    Open Source Contributions (Ongoing & Merged)
-    (Check the "open_source" command for more info)
-
-    Bluesky (30M+ users) (React Native, TypeScript, Golang)
-    Bluesky Ongoing PRs – Implemented a QR code generation feature, allowing users to quickly share
-    their profiles, improving user connectivity and engagement. Designed and built a custom scroll bar
-    for the Bluesky homepage to make it clear that the component was scrollable, solving a usability issue
-    where users were previously confused. Additionally, resolved a critical issue where users were unable
-    to unfollow blocked accounts, ensuring a smoother and more consistent user experience.
-
-    UseMemos (4.6M Docker Pulls) (React, TypeScript, Golang, Air)
-    Merged PRs – Fixed Mermaid diagram theme inconsistencies, resolved memo collapsing issues,
-    and fixed a bug where the Disallow Password Authentication switch was incorrectly enabled for
-    users without an identity provider configured. This fix ensured that authentication settings could only
-    be changed when an identity provider was properly set up, preventing misconfiguration and improving
-    security.
-
-    LazyGit (1M+ users) (Golang)
-    Lazygit Ongoing PRs – Added a feature to filter commit history by date range, allowing users to
-    efficiently navigate and inspect specific commits within a defined time frame.
-
-    FreeCodeCamp (1M+ users) (React, TypeScript, Gatsby, MongoDB)
-    Merged PRs – Introduced persistent pane state saving, eliminating the need for users to manually
-    readjust layouts. Implemented an enhanced debugging system allowing developers to repeatedly
-    run tests on the same challenge without being automatically redirected to the next one, significantly
-    improving workflow efficiency.
-
-    Mattermost (500K+ users) (React, TypeScript)
-    Merged PRs – Enhanced emoji picker functionality by allowing persistent selection across sessions.
-
-    Education
-    Bachelor of Technology (B.Tech) in Computer Science and Engineering (2019–2023)
-
-    `,
+    resume: `Summary<br>
+    I am a Full Stack Mobile Developer specializing in React Native and React, transforming Figma designs into functional apps with seamless payment gateways, REST APIs, third-party integrations, Bluetooth (thermal printers), image optimization, and custom graph libraries.<br>  
+    Beyond mobile development, I have experience with security tools like Metasploit, Burp Suite, ZAP, and MOBSf, as well as dev tools like Docker, Git, and GitHub.<br>  
+    I’m proficient in Linux, contribute to open-source projects like Bluesky, FreeCodeCamp, Mattermost, and Memos, and continuously expand my knowledge in machine learning and AI.<br>  
+    I have worked on codebases with over 30 million users and increasing, showcasing my ability to contribute to large-scale projects with significant impact.<br><br>  
+    
+    Experience<br>  
+    <strong>Full Stack Mobile Developer</strong><br>  
+    React Native, Django, Docker, Git, GitHub, Linux<br>  
+    May 2024 – December<br>  
+    • Developed and managed a microservices architecture with about 8 microservices, ensuring scalability and maintainability of the system.<br>  
+    • Implemented an image compression system that reduced file sizes by up to 90%, significantly cutting down bandwidth costs and server load, saving substantial resources.<br>  
+    • Integrated an advanced anti-root detection mechanism in the React Native app, preventing exploitation on rooted devices and ensuring a secure user experience.<br>  
+    • Developed an image metadata and geo-location stripping feature, ensuring that sensitive user information is removed from uploaded images, enhancing privacy.<br>  
+    • Led the integration of Tilled payment API for U.S. customers, implementing a full-stack solution covering both frontend UI and backend transaction processing.<br>  
+    • Implemented Eazebuzz payment API within the Django backend, enabling seamless transactions for users.<br>  
+    • Created a Slack bot using Python to notify teams of Django server errors in real time, allowing non-technical team members to access logs without SSH access.<br>  
+    • Identified and patched a session login vulnerability that could allow unauthorized access, improving application security.<br>  
+    • Developed a custom graphing library using react-native-svg, which powered a merchant landing page with interactive heatmaps and analytics visualizations, improving insights for business owners.<br><br>  
+    
+    <strong>Mobile Developer Intern</strong><br>  
+    React Native, Git, GitHub<br>  
+    3 Months<br>  
+    • Engineered a Bluetooth communication system enabling seamless integration with thermal printers, allowing for quick and efficient bill printing directly from the mobile app.<br>  
+    • Developed various inventory management systems, streamlining stock and staff tracking processes, leading to improved operational efficiency.<br><br>  
+    
+    <strong>Open Source Contributions (Ongoing & Merged)</strong><br>  
+    (Check the "open_source" command for more info)<br><br>  
+    
+    <strong>Bluesky (30M+ users)</strong> (React Native, TypeScript, Golang)<br>  
+    Bluesky Ongoing PRs – Implemented a QR code generation feature, allowing users to quickly share their profiles, improving user connectivity and engagement.<br>  
+    Designed and built a custom scroll bar for the Bluesky homepage to make it clear that the component was scrollable, solving a usability issue where users were previously confused.<br>  
+    Additionally, resolved a critical issue where users were unable to unfollow blocked accounts, ensuring a smoother and more consistent user experience.<br><br>  
+    
+    <strong>UseMemos (4.6M Docker Pulls)</strong> (React, TypeScript, Golang, Air)<br>  
+    Merged PRs – Fixed Mermaid diagram theme inconsistencies, resolved memo collapsing issues, and fixed a bug where the Disallow Password Authentication switch was incorrectly enabled for users without an identity provider configured.<br>  
+    This fix ensured that authentication settings could only be changed when an identity provider was properly set up, preventing misconfiguration and improving security.<br><br>  
+    
+    <strong>LazyGit (1M+ users)</strong> (Golang)<br>  
+    Lazygit Ongoing PRs – Added a feature to filter commit history by date range, allowing users to efficiently navigate and inspect specific commits within a defined time frame.<br><br>  
+    
+    <strong>FreeCodeCamp (1M+ users)</strong> (React, TypeScript, Gatsby, MongoDB)<br>  
+    Merged PRs – Introduced persistent pane state saving, eliminating the need for users to manually readjust layouts.<br>  
+    Implemented an enhanced debugging system allowing developers to repeatedly run tests on the same challenge without being automatically redirected to the next one, significantly improving workflow efficiency.<br><br>  
+    
+    <strong>Mattermost (500K+ users)</strong> (React, TypeScript)<br>  
+    Merged PRs – Enhanced emoji picker functionality by allowing persistent selection across sessions.<br><br>  
+    
+    <strong>Education</strong><br>  
+    Bachelor of Technology (B.Tech) in Computer Science and Engineering (2019–2023)<br>`,
 
     open_source: [
         {
@@ -153,28 +121,37 @@ const commands = {
             contributions: `
             Working on issues were lying around since 2023 in bluesky.
             
-            Added a QR code generation feature for easy profile sharing, designed a custom scroll bar for bluesky's homepage,
-            fixed an issue where users couldn’t unfollow blocked accounts.`,
+            Added a QR code generation feature for easy profile sharing,
+            designed a custom scroll bar for bluesky's homepage,
+            fixed an issue where users couldn’t unfollow blocked
+            accounts.`,
             link: "https://github.com/bluesky-social/social-app/pulls/X1Vi"
         },
         {
             name: "UseMemos",
-            contributions: "Fixed Mermaid diagram theme inconsistencies, resolved memo collapsing issues, and corrected a bug with the 'Disallow Password Authentication' switch to prevent misconfigurations.",
+            contributions: `Fixed Mermaid diagram theme inconsistencies,resolved 
+            memo collapsing issues, and corrected a bug with the
+            Disallow Password Authentication' switch to prevent misconfigurations.`,
             link: "https://github.com/usememos/memos/pulls?q=is%3Apr+author%3AX1Vi+is%3Aclosed"
         },
         {
             name: "LazyGit",
-            contributions: "Added a feature to filter commit history by date range, making it easier for users to navigate and inspect specific commits.",
+            contributions: `Added a feature to filter 
+            commit history by date range, making it easier for users
+            to navigate and inspect specific commits.`,
             link: "https://github.com/jesseduffield/lazygit/pulls/X1Vi"
         },
         {
             name: "FreeCodeCamp",
-            contributions: "Introduced persistent pane state saving to eliminate manual layout adjustments and improved the debugging workflow by allowing repeated tests on the same challenge.",
+            contributions: `Introduced persistent pane state saving to eliminate
+            manual layout adjustments and improved the debugging workflow by
+            allowing repeated tests on the same challenge.`,
             link: "https://github.com/freeCodeCamp/freeCodeCamp/pulls?q=is%3Apr+author%3AX1Vi+is%3Aclosed"
         },
         {
             name: "Mattermost",
-            contributions: "Enhanced the emoji picker by making selections persistent across sessions, improving user convenience.",
+            contributions: `Enhanced the emoji picker by making selections
+            persistent across sessions, improving user convenience.`,
             link: "https://github.com/mattermost/mattermost/pulls?q=is%3Apr+author%3AX1Vi+is%3Aclosed"
         }
     ],
@@ -220,8 +197,34 @@ const commands = {
 
     help: "Available commands: about, techstack, open_source, education, resume, socials, games, clear, help, something, video_editing",
     something: `
-    
-    ++++++++++++++++++++++:................:+++++++++++++++++++++++++++++++++++
+    Just clouds turned into ASCII art from my pixel art.
+    Why not see my bluesky to see more of what I've been up to or sponsor me ?
+    Check out the 'socials' command for more info.`,
+    clear: "Terminal cleared.",
+
+};
+const asciiArt = {
+    art: `
+                                                    
+   ,--,     ,--,       ,---,                        
+   |'. \\   / .\`|    ,\`--.' |        ,---.   ,--,    
+   ; \\ \`\\ /' / ;   /    /  :       /__./| ,--.'|    
+   \`. \\  /  / .'  :    |.' '  ,---.;  ; | |  |,     
+    \\  \\/  / ./   \`----':  | /___/ \\  | | \`--'_     
+     \\  \\.'  /       '   ' ; \\   ;  \\ ' | ,' ,'|    
+      \\  ;  ;        |   | |  \\   \\  \\: | '  | |    
+     / \\  \\  \\       '   : ;   ;   \\  ' . |  | :    
+    ;  /\\  \\  \\      |   | '    \\   \\   ' '  : |__  
+  ./__;  \\  ;  \\     '   : |     \\   \`  ; |  | '.'| 
+  |   : / \\  \\  ;    ;   |.'      :   \\ | ;  :    ; 
+  ;   |/   \\  ' |    '---'         '---"  |  ,   /  
+  \`---'     \`--\`                           ---\`-'   
+                                                    
+  `
+};
+
+const something = `
++   +++++++++++++++++++++:................:+++++++++++++++++++++++++++++++++++
     ++++++++++++++++++++++++++++++++++++++++++++++-..................=++++++++++++++++++++++++++++++++++
     +++++++++++++++++++++++++++++++++++++++++++++=-..........::......=++++++++++++++++++++++++++++++++++
     +++++++++++++++++++++++++++++++++++++++++=::..........:=+*-......=+++++++++++++++++++=====++++++++++
@@ -275,35 +278,10 @@ const commands = {
     ++++++++++++++++++++++++*%%%%%%%%=..::.:-+**#####*****%%##%%%%###%%#*##%%%%%%##***********#*******++
     ++++++++++++++++++++++++++*%%%%%%=-=******########*****+:.:-%%%#%%%:-*##%%%%####****############*+++
     +++++++++++++++++++++++++++++#%%%#*****::*##**##########****#%%%%%%%*##%%%%#####%#############*+++++
-    
-    Just clouds turned into ASCII art from my pixel art.
-    Why not see my bluesky to see more of what I've been up to or sponsor me ?
-    Check out the 'socials' command for more info.`,
-    clear: "Terminal cleared.",
-
-};
-const asciiArt = {
-    art: `
-                                                    
-   ,--,     ,--,       ,---,                        
-   |'. \\   / .\`|    ,\`--.' |        ,---.   ,--,    
-   ; \\ \`\\ /' / ;   /    /  :       /__./| ,--.'|    
-   \`. \\  /  / .'  :    |.' '  ,---.;  ; | |  |,     
-    \\  \\/  / ./   \`----':  | /___/ \\  | | \`--'_     
-     \\  \\.'  /       '   ' ; \\   ;  \\ ' | ,' ,'|    
-      \\  ;  ;        |   | |  \\   \\  \\: | '  | |    
-     / \\  \\  \\       '   : ;   ;   \\  ' . |  | :    
-    ;  /\\  \\  \\      |   | '    \\   \\   ' '  : |__  
-  ./__;  \\  ;  \\     '   : |     \\   \`  ; |  | '.'| 
-  |   : / \\  \\  ;    ;   |.'      :   \\ | ;  :    ; 
-  ;   |/   \\  ' |    '---'         '---"  |  ,   /  
-  \`---'     \`--\`                           ---\`-'   
-                                                    
-  `
-};
+`
 
 const Terminal = () => {
-    const [history, setHistory] = useState([{ command: "name", output: asciiArt.art }]);
+    const [history, setHistory] = useState([{ command: "help", output: commands.help }]);
     const [input, setInput] = useState("");
     const [isDarkMode, setIsDarkMode] = useState(true);
     const [toggleAvailableCommands, setToggleAvailableCommands] = useState(false);
@@ -326,16 +304,16 @@ const Terminal = () => {
         { command: "games", output: commands.games },
     ];
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        if(normalMode){
+        if (normalMode) {
             setHoldHistory(history)
             setHistory(allCommandsAndData)
         }
-        else if (!normalMode && clearedOnce){
+        else if (!normalMode && clearedOnce) {
             setHistory(holdHistory)
         }
-    },[normalMode])
+    }, [normalMode])
 
     useEffect(() => {
         const handleResize = () => setWindowWidth(window.innerWidth);
@@ -421,7 +399,7 @@ const Terminal = () => {
             border: "cyan",
         }
     };
-    const currentColors = isDarkMode ? colors.pinkish : colors.light;
+    const currentColors = isDarkMode ? colors.dark : colors.light;
 
     // Scroll to the bottom of the terminal whenever the history changes
     useEffect(() => {
@@ -448,7 +426,7 @@ const Terminal = () => {
                 width: "100vw"
             }}
         >
-            <div style={{ display: "flex", flexDirection: 'row-reverse', justifyContent: "space-between", marginBottom: "20px" }}>
+            <div style={{ display: "flex", flexDirection: 'row-reverse', justifyContent: "flex-end", marginBottom: "20px" }}>
                 <button
                     onClick={toggleTheme}
                     style={{
@@ -458,24 +436,26 @@ const Terminal = () => {
                         border: `2px solid ${currentColors.border}`,
                         cursor: "pointer",
                         fontSize: "16px",
+                        margin: "4px 4px"
                     }}
                 >
                     Toggle Theme
                 </button>
-                
+
                 <button
-                onClick={() => setSwitchNormalMode(!normalMode)}
-                style={{
-                    padding: "10px",
-                    backgroundColor: currentColors.background,
-                    color: currentColors.text,
-                    border: `2px solid ${currentColors.border}`,
-                    cursor: "pointer",
-                    fontSize: "16px",
-                }}
-            >
-                {normalMode ? "Hacker Mode" : "Normal Mode"}
-            </button>
+                    onClick={() => setSwitchNormalMode(!normalMode)}
+                    style={{
+                        padding: "10px",
+                        backgroundColor: currentColors.background,
+                        color: currentColors.text,
+                        border: `2px solid ${currentColors.border}`,
+                        cursor: "pointer",
+                        fontSize: "16px",
+
+                    }}
+                >
+                    {normalMode ? "Hacker Mode" : "Normal Mode"}
+                </button>
 
             </div>
 
@@ -500,7 +480,7 @@ const Terminal = () => {
                             ))}
                         </ul>
                     </div>
-                    <button
+                    {/* <button
                         onClick={() => setToggleAvailableCommands(!toggleAvailableCommands)}
                         style={{
                             padding: "10px",
@@ -512,31 +492,34 @@ const Terminal = () => {
                         }}
                     >
                         {toggleAvailableCommands ? "Hide Commands" : "Show Commands"}
-                    </button>
+                    </button> */}
                 </>
 
                 :
-
-                <button
-                    onClick={() => setToggleAvailableCommands(!toggleAvailableCommands)}
-                    style={{
-                        padding: "10px",
-                        backgroundColor: currentColors.background,
-                        color: currentColors.text,
-                        border: `2px solid ${currentColors.border}`,
-                        cursor: "pointer",
-                        fontSize: "16px",
-                    }}
-                >
-                    {toggleAvailableCommands ? "Hide Commands" : "Show Commands"}
-                </button>
+                null
+                // <button
+                //     onClick={() => setToggleAvailableCommands(!toggleAvailableCommands)}
+                //     style={{
+                //         padding: "10px",
+                //         backgroundColor: currentColors.background,
+                //         color: currentColors.text,
+                //         border: `2px solid ${currentColors.border}`,
+                //         cursor: "pointer",
+                //         fontSize: "16px",
+                //     }}
+                // >
+                //     {toggleAvailableCommands ? "Hide Commands" : "Show Commands"}
+                // </button>
             }
 
             <div ref={historyRef} style={{ flexGrow: 1, overflowY: "auto" }}>
                 {history.map((entry, index) => (
                     <div key={index} style={{ marginBottom: "10px" }}>
                         {!clearedOnce ?
-                            <AsciiAnimator />
+                            <>
+                                <AsciiAnimator />
+                                <pre>{asciiArt.art}</pre>
+                            </>
                             : null}
                         <p>
                             <span style={{ fontWeight: "bold" }}>root@x1vi $ {entry.command}</span>
@@ -557,24 +540,39 @@ const Terminal = () => {
                                                         {item.name}
                                                     </a>
                                                     {item.contributions ? (
-                                                        <p>{item.contributions}</p>
+                                                        <p style={{ textWrap: 'break-word', marginRight: "10px" }}>
+                                                            {item.contributions}
+                                                        </p>
                                                     ) : null}
                                                 </>
                                             ) : (
-                                                `${item.name}: ${item.details}`
+                                                <p style={{}}><p>{item.name}</p> <p dangerouslySetInnerHTML={{ __html: item.details }}></p></p>
                                             )
                                         ) : (
-                                            item
+                                            <p>
+                                                {item}
+                                            </p>
                                         )}
                                     </p>
                                 ))}
                             </div>
                         ) : (
-                            <div
-                                dangerouslySetInnerHTML={{
-                                    __html: `<pre>${entry.output}</pre>`,
-                                }}
-                            />
+                            <>
+                                {entry.command === "something" ? (
+                                    <pre>{something}</pre>
+                                ) : null}
+                                <div
+                                    style={{
+
+                                        wordWrap: "break-word",
+                                        textAlign: "justify",
+                                        overflowX: "auto" // Added to handle wide ASCII art
+                                    }}
+                                    dangerouslySetInnerHTML={{
+                                        __html: `<p>${entry.output}</p>`
+                                    }}
+                                />
+                            </>
 
                         )}
                     </div>
@@ -584,56 +582,55 @@ const Terminal = () => {
                 {windowWidth > 1024 ? (
                     <p style={{ fontWeight: "bold", display: "flex" }}>root@{Name.toLowerCase()} $</p>
                 ) : null}
-               {!normalMode ? 
-               
-               
-                <input
-                    ref={commandInputRef}
-                    style={{
-                        backgroundColor: currentColors.background,
-                        color: currentColors.text,
-                        border: "none",
-                        borderBottom: `0px solid ${currentColors.border}`,
-                        fontSize: "16px",
-                        outline: "none",
-                        width: "90%",
-                        marginLeft: "4px"
-                    }}
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                            executeCommand()
-                            setCommands([..._commands, input])
-                            setCommandsIndex(_commands.length + 1)
-                        }
-                        else if (e.key === "ArrowUp") {
-                            if (_commands.length > 0 && _commandsIndex > 0) {
-                                setCommandsIndex(_commandsIndex - 1);
-                                setInput(_commands[_commandsIndex - 1]);
+                {!normalMode ?
+
+
+                    <input
+                        ref={commandInputRef}
+                        style={{
+                            backgroundColor: currentColors.background,
+                            color: currentColors.text,
+                            border: "none",
+                            borderBottom: `0px solid ${currentColors.border}`,
+                            fontSize: "16px",
+                            outline: "none",
+                            width: "90%"
+                        }}
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                executeCommand()
+                                setCommands([..._commands, input])
+                                setCommandsIndex(_commands.length + 1)
                             }
-                        }
-                        else if (e.key === "ArrowDown") {
-                            if (_commands.length > 0 && _commandsIndex < _commands.length - 1) {
-                                setCommandsIndex(_commandsIndex + 1);
-                                setInput(_commands[_commandsIndex + 1]);
-                            } else {
-                                setInput("");
+                            else if (e.key === "ArrowUp") {
+                                if (_commands.length > 0 && _commandsIndex > 0) {
+                                    setCommandsIndex(_commandsIndex - 1);
+                                    setInput(_commands[_commandsIndex - 1]);
+                                }
                             }
-                        }
-                        else if (e.key === "Tab") {
-                            e.preventDefault();
-                            const matchingCommands = Object.keys(commands).filter(command =>
-                                command.startsWith(input)
-                            );
-                            if (matchingCommands.length === 1) {
-                                setInput(matchingCommands[0]);
+                            else if (e.key === "ArrowDown") {
+                                if (_commands.length > 0 && _commandsIndex < _commands.length - 1) {
+                                    setCommandsIndex(_commandsIndex + 1);
+                                    setInput(_commands[_commandsIndex + 1]);
+                                } else {
+                                    setInput("");
+                                }
                             }
-                        }
-                    }}
-                    placeholder="Type 'help' to see the commands"
-                />
-               : null}
+                            else if (e.key === "Tab") {
+                                e.preventDefault();
+                                const matchingCommands = Object.keys(commands).filter(command =>
+                                    command.startsWith(input)
+                                );
+                                if (matchingCommands.length === 1) {
+                                    setInput(matchingCommands[0]);
+                                }
+                            }
+                        }}
+                        placeholder="Type 'help' to see the commands"
+                    />
+                    : null}
             </div>
         </div >
     );
