@@ -281,6 +281,106 @@ const something = `
     ++++++++++++++++++++++++++*%%%%%%=-=******########*****+:.:-%%%#%%%:-*##%%%%####****############*+++
     +++++++++++++++++++++++++++++#%%%#*****::*##**##########****#%%%%%%%*##%%%%#####%#############*+++++
 `
+const colors = {
+    dark: {
+        background: "#1e1e1e",
+        text: "#d4d4d4",
+        command: "#569cd6",
+        link: "#9cdcfe",
+        border: "#5a5a5a", // Lightened border color
+        codeblock: "#2d2d2d"
+    },
+    pinkish: {
+        background: "#2c001e",
+        text: "#ffb3b3",
+        command: "#ff66b2",
+        link: "#ff99cc",
+        border: "#ff80b3", // Lightened border color
+        codeblock: "#3d0030"
+    },
+    bluish: {
+        background: "#001f3f",
+        text: "#d0e7ff",
+        command: "#66b2ff",
+        link: "#99ccff",
+        border: "#3385cc", // Lightened border color
+        codeblock: "#002b5c"
+    },
+    terminal: {
+        background: "#1e1e1e",
+        text: "#d4d4d4",
+        command: "#569cd6",
+        link: "#9cdcfe",
+        border: "#5a5a5a", // Lightened border color
+        codeblock: "#2d2d2d"
+    },
+    greenish: {
+        background: "#002b1c",
+        text: "#b3ffcc",
+        command: "#66ff99",
+        link: "#99ffcc",
+        border: "#80ffb3", // Lightened border color
+        codeblock: "#003d2e"
+    },
+    orangish: {
+        background: "#3f2b00",
+        text: "#ffd0b3",
+        command: "#ff9966",
+        link: "#ffcc99",
+        border: "#cc8533", // Lightened border color
+        codeblock: "#5c3d00"
+    },
+    purplish: {
+        background: "#1f003f",
+        text: "#e7d0ff",
+        command: "#b266ff",
+        link: "#cc99ff",
+        border: "#8533cc", // Lightened border color
+        codeblock: "#2b005c"
+    },
+    yellowish: {
+        background: "#3f3f00",
+        text: "#ffffb3",
+        command: "#ffff66",
+        link: "#ffff99",
+        border: "#cccc33", // Lightened border color
+        codeblock: "#5c5c00"
+    },
+    reddish: {
+        background: "#3f0000",
+        text: "#ffb3b3",
+        command: "#ff6666",
+        link: "#ff9999",
+        border: "#cc3333", // Lightened border color
+        codeblock: "#5c0000"
+    },
+    cyan: {
+        background: "#003f3f",
+        text: "#b3ffff",
+        command: "#66ffff",
+        link: "#99ffff",
+        border: "#33cccc", // Lightened border color
+        codeblock: "#005c5c"
+    },
+    brownish: {
+        background: "#3f2b1f",
+        text: "#ffd7b3",
+        command: "#ff9966",
+        link: "#ffcc99",
+        border: "#cc8533", // Lightened border color
+        codeblock: "#5c3d2b"
+    }
+};
+
+
+// light: {
+//     background: "#ffffff",
+//     text: "#333333",
+//     command: "#007acc",
+//     link: "#0066cc",
+//     border: "#e0e0e0", // Lightened border color
+//     codeblock: "#f5f5f5"
+// },
 
 const Terminal = () => {
     const [history, setHistory] = useState([{ command: "help", output: commands.help }]);
@@ -295,7 +395,8 @@ const Terminal = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [holdHistory, setHoldHistory] = useState([])
     const [normalMode, setSwitchNormalMode] = useState(false)
-
+    const [currentTheme, setCurrentTheme] = useState(colors.pinkish)
+    const [currentColors, setCurrentColors] = useState(colors.pinkish)
     const allCommandsAndData = [
         { command: "about", output: commands.about },
         { command: "techstack", output: commands.techstack },
@@ -368,53 +469,19 @@ const Terminal = () => {
     };
 
     const toggleTheme = () => {
-        setIsDarkMode(!isDarkMode);
+        const themes = Object.values(colors);
+        const currentIndex = themes.indexOf(currentTheme);
+        const nextIndex = (currentIndex + 1) % themes.length;
+        setCurrentTheme(themes[nextIndex]);
+
+        console.log(currentTheme);
     };
 
-    const colors = {
-        dark: {
-            background: "#1e1e1e",
-            text: "#d4d4d4",
-            command: "#569cd6",
-            link: "#9cdcfe",
-            border: "#3c3c3c",
-            codeblock: "#2d2d2d"
-        },
-        light: {
-            background: "#ffffff",
-            text: "#333333",
-            command: "#007acc",
-            link: "#0066cc",
-            border: "#cccccc",
-            codeblock: "#f5f5f5"
-        },
-        pinkish: {
-            background: "#2c001e",
-            text: "#ffb3b3",
-            command: "#ff66b2",
-            link: "#ff99cc",
-            border: "#ff4d94",
-            codeblock: "#3d0030"
-        },
-        bluish: {
-            background: "#001f3f",
-            text: "#d0e7ff",
-            command: "#66b2ff",
-            link: "#99ccff",
-            border: "#004080",
-            codeblock: "#002b5c"
-        },
-        terminal: {
-            background: "#1e1e1e",
-            text: "#d4d4d4",
-            command: "#569cd6",
-            link: "#9cdcfe",
-            border: "#3c3c3c",
-            codeblock: "#2d2d2d"
-        }
-    };
+    useEffect(()=>{
+        setCurrentColors(currentTheme)
+    },[currentTheme])
 
-    const currentColors = isDarkMode ? colors.terminal : colors.light;
+    
 
     // Scroll to the bottom of the terminal whenever the history changes
     useEffect(() => {
@@ -619,7 +686,7 @@ const Terminal = () => {
                 overflowY: "auto",
                 fontFamily: "monospace",
                 padding: "12px",
-                backgroundColor: currentColors.codeblock,
+                background: `linear-gradient(135deg, ${currentColors.codeblock} 0%, ${'yellow'} 250%)`,
                 color: currentColors.text,
                 borderRadius: "4px"
             }}>
