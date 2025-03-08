@@ -224,7 +224,7 @@ const asciiArt = {
 };
 
 const something = `
-+   +++++++++++++++++++++:................:+++++++++++++++++++++++++++++++++++
+    +   +++++++++++++++++++++:................:+++++++++++++++++++++++++++++++++++
     ++++++++++++++++++++++++++++++++++++++++++++++-..................=++++++++++++++++++++++++++++++++++
     +++++++++++++++++++++++++++++++++++++++++++++=-..........::......=++++++++++++++++++++++++++++++++++
     +++++++++++++++++++++++++++++++++++++++++=::..........:=+*-......=+++++++++++++++++++=====++++++++++
@@ -376,6 +376,7 @@ const Terminal = () => {
             command: "lightgreen",
             link: "lightblue",
             border: "lime",
+            codeblock: "dimgray" // A subtle dark shade for code blocks
         },
         light: {
             background: "white",
@@ -383,6 +384,7 @@ const Terminal = () => {
             command: "green",
             link: "blue",
             border: "green",
+            codeblock: "lightgrey"
         },
         pinkish: {
             background: "black",
@@ -390,6 +392,7 @@ const Terminal = () => {
             command: "pink",
             link: "lightcoral",
             border: "deeppink",
+            codeblock: "darkgrey"
         },
         bluish: {
             background: "navy",
@@ -397,9 +400,19 @@ const Terminal = () => {
             command: "aqua",
             link: "lightskyblue",
             border: "cyan",
+            codeblock: "midnightblue"
+        },
+        terminal: {
+            background: "black",
+            text: "lime",
+            command: "lightgreen",
+            link: "lightblue",
+            border: "lime",
+            codeblock: "dimgray"
         }
     };
-    const currentColors = isDarkMode ? colors.dark : colors.light;
+
+    const currentColors = isDarkMode ? colors.terminal: colors.light;
 
     // Scroll to the bottom of the terminal whenever the history changes
     useEffect(() => {
@@ -512,68 +525,119 @@ const Terminal = () => {
                 // </button>
             }
 
-            <div ref={historyRef} style={{ flexGrow: 1, overflowY: "auto" }}>
+            <div ref={historyRef} style={{
+                flexGrow: 1,
+                overflowY: "auto",
+                fontFamily: "monospace",
+                padding: "12px",
+                backgroundColor: currentColors.codeblock,
+                color: currentColors.text,
+                borderRadius: "4px"
+            }}>
                 {history.map((entry, index) => (
-                    <div key={index} style={{ marginBottom: "10px" }}>
-                        {!clearedOnce ?
-                            <>
+                    <div key={index} style={{
+                        marginBottom: "20px",
+                        borderBottom: `1px solid ${currentColors.border}`,
+                        paddingBottom: "10px"
+                    }}>
+                        {!clearedOnce ? (
+                            <div style={{ marginBottom: "10px" }}>
                                 <AsciiAnimator />
-                                <pre>{asciiArt.art}</pre>
-                            </>
-                            : null}
-                        <p>
-                            <span style={{ fontWeight: "bold" }}>root@x1vi $ {entry.command}</span>
+                                <pre style={{
+                                    margin: "0",
+                                    overflow: "auto",
+                                    maxWidth: "100%"
+                                }}>{asciiArt.art}</pre>
+                            </div>
+                        ) : null}
+
+                        <p style={{ margin: "8px 0" }}>
+                            <span style={{
+                                fontWeight: "bold",
+                                color: currentColors.command
+                            }}>root@x1vi $ {entry.command}</span>
                         </p>
+
                         {Array.isArray(entry.output) ? (
-                            <div style={{ marginLeft: "10px" }}>
+                            <div style={{
+                                marginLeft: "15px",
+                                lineHeight: "1.5"
+                            }}>
                                 {entry.output.map((item, idx) => (
-                                    <p key={idx}>
+                                    <div key={idx} style={{
+                                        marginBottom: "8px"
+                                    }}>
                                         {item.name ? (
                                             item.link ? (
-                                                <>
+                                                <div>
                                                     <a
                                                         href={item.link}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        style={{ color: currentColors.link }}
+                                                        style={{
+                                                            color: currentColors.link,
+                                                            textDecoration: "underline"
+                                                        }}
                                                     >
                                                         {item.name}
                                                     </a>
-                                                    {item.contributions ? (
-                                                        <p style={{ textWrap: 'break-word', marginRight: "10px" }}>
+                                                    {item.contributions && (
+                                                        <p style={{
+                                                            textWrap: 'break-word',
+                                                            marginTop: "4px",
+                                                            marginBottom: "4px",
+                                                            paddingLeft: "10px",
+                                                            borderLeft: `2px solid ${currentColors.border}`
+                                                        }}>
                                                             {item.contributions}
                                                         </p>
-                                                    ) : null}
-                                                </>
+                                                    )}
+                                                </div>
                                             ) : (
-                                                <p style={{}}><p>{item.name}</p> <p dangerouslySetInnerHTML={{ __html: item.details }}></p></p>
+                                                <div>
+                                                    <p style={{
+                                                        fontWeight: "bold",
+                                                        margin: "5px 0"
+                                                    }}>{item.name}</p>
+                                                    <div
+                                                        style={{
+                                                            marginLeft: "10px",
+                                                            lineHeight: "1.4"
+                                                        }}
+                                                        dangerouslySetInnerHTML={{ __html: item.details }}
+                                                    />
+                                                </div>
                                             )
                                         ) : (
-                                            <p>
-                                                {item}
-                                            </p>
+                                            <p style={{ margin: "3px 0" }}>{item}</p>
                                         )}
-                                    </p>
+                                    </div>
                                 ))}
                             </div>
                         ) : (
-                            <>
+                            <div>
                                 {entry.command === "something" ? (
-                                    <pre>{something}</pre>
+                                    <pre style={{
+                                        margin: "5px 0",
+                                        padding: "8px",
+                                        backgroundColor: currentColors.background,
+                                        borderRadius: "3px",
+                                        overflowX: "auto"
+                                    }}>{something}</pre>
                                 ) : null}
                                 <div
                                     style={{
-
                                         wordWrap: "break-word",
-                                        textAlign: "justify",
-                                        overflowX: "auto" // Added to handle wide ASCII art
+                                        textAlign: "left",
+                                        overflowX: "auto",
+                                        lineHeight: "1.5",
+                                        marginLeft: "10px"
                                     }}
                                     dangerouslySetInnerHTML={{
-                                        __html: `<p>${entry.output}</p>`
+                                        __html: `<p style="margin: 5px 0">${entry.output}</p>`
                                     }}
                                 />
-                            </>
-
+                            </div>
                         )}
                     </div>
                 ))}
