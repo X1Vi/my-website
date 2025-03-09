@@ -622,7 +622,7 @@ const Terminal = () => {
                 overflowY: "auto",
                 fontFamily: "monospace",
                 padding: "12px",
-                background: `linear-gradient(135deg, ${currentColors.codeblock} 0%, ${'yellow'} 250%)`,
+                background: `linear-gradient(125deg, ${currentColors.codeblock} 0%, ${'cyan'} 300%)`,
                 color: currentColors.text,
                 borderRadius: "4px"
             }}>
