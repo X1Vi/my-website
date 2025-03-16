@@ -195,8 +195,8 @@ const commands = {
         },
     ],
 
-    help: "Available commands: about, ls, techstack, open_source, education, resume, socials, games, clear, help, something, video_editing",
-    ls: "Available commands: about, ls,  techstack, open_source, education, resume, socials, games, clear, help, something, video_editing",
+    help: "Available commands: about,ls , techstack, open_source, education, resume, socials, games, clear, help, something, video_editing",
+    ls: "Available commands: about,ls ,  techstack, open_source, education, resume, socials, games, clear, help, something, video_editing",
 
     something: `
     Just clouds turned into ASCII art from my pixel art.
