@@ -35,7 +35,7 @@ const commands = {
         },
         {
             "name": "Design & Prototyping",
-            "details": "<strong>Figma</strong>, <strong>GIMP</strong>, <strong>Pixel</strong>, <strong>Pixelroma</strong>, <strong>Aseprite</strong>"
+            "details": "<strong>Figma</strong>, <strong>GIMP</strong>, <strong>Pixelroma</strong>, <strong>Aseprite</strong>"
         },
         {
             "name": "API Testing & Tools",
@@ -330,9 +330,11 @@ const Terminal = () => {
     const [clearedOnce, setClearedOnce] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [holdHistory, setHoldHistory] = useState([])
-    const [normalMode, setSwitchNormalMode] = useState(false)
+    const [normalMode, setSwitchNormalMode] = useState(true)
     const [currentTheme, setCurrentTheme] = useState(colors.bluish)
     const [currentColors, setCurrentColors] = useState(colors.bluish)
+    const [showAnimations, setShowAnimations] = useState(true);
+
     const allCommandsAndData = [
         { command: "about", output: commands.about },
         { command: "techstack", output: commands.techstack },
@@ -369,7 +371,9 @@ const Terminal = () => {
         setClearedOnce(false)
     }, [])
     useEffect(() => {
-        commandInputRef.current.focus();
+        if (commandInputRef && commandInputRef.current) {
+            commandInputRef.current.focus();
+        }
     }, []);
 
     useEffect(() => {
@@ -384,6 +388,7 @@ const Terminal = () => {
 
     const executeCommand = () => {
         if (input === "clear") {
+            setShowAnimations(false)
             setHistory([]); // Clears the terminal history
         } else if (commands[input]) {
             setHistory([...history, { command: input, output: commands[input] }]);
@@ -413,11 +418,11 @@ const Terminal = () => {
         console.log(currentTheme);
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         setCurrentColors(currentTheme)
-    },[currentTheme])
+    }, [currentTheme])
 
-    
+
 
     // Scroll to the bottom of the terminal whenever the history changes
     useEffect(() => {
@@ -425,6 +430,10 @@ const Terminal = () => {
             const lastItem = history[history.length - 1];
             if (lastItem && lastItem.output.length < 1000) {
                 // Adjust the length threshold as needed
+                if(normalMode)
+                {
+                    return;
+                }
                 historyRef.current.scrollTop = historyRef.current.scrollHeight;
             }
         }
@@ -626,22 +635,24 @@ const Terminal = () => {
                 color: currentColors.text,
                 borderRadius: "4px"
             }}>
+                {showAnimations && normalMode === false ?
+                    <div style={{ marginBottom: "10px" }}>
+                        <AsciiAnimator />
+                        <pre style={{
+                            margin: "0",
+                            overflow: "auto",
+                            maxWidth: "100%"
+                        }}>{asciiArt.art}</pre>
+                    </div>
+                    : null}
+
+
                 {history.map((entry, index) => (
                     <div key={index} style={{
                         marginBottom: "20px",
                         borderBottom: `1px solid ${currentColors.border}`,
                         paddingBottom: "10px"
                     }}>
-                        {!clearedOnce ? (
-                            <div style={{ marginBottom: "10px" }}>
-                                <AsciiAnimator />
-                                <pre style={{
-                                    margin: "0",
-                                    overflow: "auto",
-                                    maxWidth: "100%"
-                                }}>{asciiArt.art}</pre>
-                            </div>
-                        ) : null}
 
                         <p style={{ margin: "8px 0" }}>
                             <span style={{
