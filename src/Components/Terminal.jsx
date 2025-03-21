@@ -155,7 +155,19 @@ const commands = {
             link: "https://github.com/mattermost/mattermost/pulls?q=is%3Apr+author%3AX1Vi+is%3Aclosed"
         }
     ],
-
+    live_projects: [
+        {
+            name: "Open Source Pixel Art Converter & Image Editor",
+            contributions:  `Developed a pixel art converter and image editor`,
+            link: "https://x1vi.github.io/pixelArtConverter/"
+        },
+        {
+            name: "Open Source Japanese Kanji & Vocab Learning App",
+            contributions: `Developed a Japanese Kanji and vocabulary learning app`,
+            link: "https://x1vi.github.io/Learn-Kanji/"
+        }
+    
+    ],
     education:
         "Bachelor of Technology (B.Tech) in Computer Science and Engineering (2019–2023).",
 
@@ -195,8 +207,8 @@ const commands = {
         },
     ],
 
-    help: "Available commands: about,ls , techstack, open_source, education, resume, socials, games, clear, help, something, video_editing",
-    ls: "Available commands: about,ls ,  techstack, open_source, education, resume, socials, games, clear, help, something, video_editing",
+    help: "Available commands: about, ls, techstack, open_source, education, resume, socials, games, clear, help, something, video_editing, live_projects",
+    ls: "Available commands: about, ls,  techstack, open_source, education, resume, socials, games, clear, help, something, video_editing, live_projects",
 
     something: `
     Just clouds turned into ASCII art from my pixel art.
@@ -342,6 +354,8 @@ const Terminal = () => {
         { command: "open_source", output: commands.open_source },
         { command: "education", output: commands.education },
         { command: "socials", output: commands.socials },
+        {command: "live_projects", output: commands.live_projects},
+        { command: "video_editing", output: commands.video_editing },
         { command: "games", output: commands.games },
     ];
 
