@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import AsciiAnimator from "./AsciiAnimator";
+import CommandDisplay from "./CommandDisplay";
 const Name = "X1Vi";
 const commands = {
     about: `<strong>I am a Full Stack Mobile Developer</strong>. I have worked in fast-paced startup environments with aggressive deadlines, allowing me to adapt quickly and deliver high-quality solutions under pressure.<br><br>  
@@ -158,7 +159,7 @@ const commands = {
     live_projects: [
         {
             name: "Open Source Pixel Art Converter & Image Editor",
-            contributions:  `Developed a pixel art converter and image editor`,
+            contributions: `Developed a pixel art converter and image editor`,
             link: "https://x1vi.github.io/pixelArtConverter/"
         },
         {
@@ -166,7 +167,7 @@ const commands = {
             contributions: `Developed a Japanese Kanji and vocabulary learning app`,
             link: "https://x1vi.github.io/Learn-Kanji/"
         }
-    
+
     ],
     education:
         "Bachelor of Technology (B.Tech) in Computer Science and Engineering (2019–2023).",
@@ -207,8 +208,8 @@ const commands = {
         },
     ],
 
-    help: "Available commands: about, ls, techstack, open_source, education, resume, socials, games, clear, help, something, video_editing, live_projects",
-    ls: "Available commands: about, ls,  techstack, open_source, education, resume, socials, games, clear, help, something, video_editing, live_projects",
+    help: "Available commands: about, ls, techstack, open_source, education, resume, socials, games, clear, help, video_editing, live_projects",
+    ls: "Available commands: about, ls,  techstack, open_source, education, resume, socials, games, clear, help, video_editing, live_projects",
 
     something: `
     Just clouds turned into ASCII art from my pixel art.
@@ -346,7 +347,19 @@ const Terminal = () => {
     const [currentTheme, setCurrentTheme] = useState(colors.bluish)
     const [currentColors, setCurrentColors] = useState(colors.bluish)
     const [showAnimations, setShowAnimations] = useState(true);
+    const [toggleNormalModeArrayItemsArray, setToggleNormalModeArrayItemsArray] = useState([]);
 
+    const appendItemInNormalModeArray = (idx) => {
+        if (!toggleNormalModeArrayItemsArray.includes(idx)) {
+            setToggleNormalModeArrayItemsArray([...toggleNormalModeArrayItemsArray, idx]);
+        }
+    };
+
+    const popItemFromNormalModeArray = (idx) => {
+        setToggleNormalModeArrayItemsArray(
+            toggleNormalModeArrayItemsArray.filter(item => item !== idx)
+        );
+    };
     const allCommandsAndData = [
         { command: "about", output: commands.about },
         { command: "techstack", output: commands.techstack },
@@ -354,7 +367,7 @@ const Terminal = () => {
         { command: "open_source", output: commands.open_source },
         { command: "education", output: commands.education },
         { command: "socials", output: commands.socials },
-        {command: "live_projects", output: commands.live_projects},
+        { command: "live_projects", output: commands.live_projects },
         { command: "video_editing", output: commands.video_editing },
         { command: "games", output: commands.games },
     ];
@@ -444,8 +457,7 @@ const Terminal = () => {
             const lastItem = history[history.length - 1];
             if (lastItem && lastItem.output.length < 1000) {
                 // Adjust the length threshold as needed
-                if(normalMode)
-                {
+                if (normalMode) {
                     return;
                 }
                 historyRef.current.scrollTop = historyRef.current.scrollHeight;
@@ -668,94 +680,13 @@ const Terminal = () => {
                         paddingBottom: "10px"
                     }}>
 
-                        <p style={{ margin: "8px 0" }}>
-                            <span style={{
-                                fontWeight: "bold",
-                                color: currentColors.command
-                            }}>root@x1vi $ {entry.command}</span>
-                        </p>
 
-                        {Array.isArray(entry.output) ? (
-                            <div style={{
-                                marginLeft: "15px",
-                                lineHeight: "1.5"
-                            }}>
-                                {entry.output.map((item, idx) => (
-                                    <div key={idx} style={{
-                                        marginBottom: "8px"
-                                    }}>
-                                        {item.name ? (
-                                            item.link ? (
-                                                <div>
-                                                    <a
-                                                        href={item.link}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        style={{
-                                                            color: currentColors.link,
-                                                            textDecoration: "underline"
-                                                        }}
-                                                    >
-                                                        {item.name}
-                                                    </a>
-                                                    {item.contributions && (
-                                                        <p style={{
-                                                            textWrap: 'break-word',
-                                                            marginTop: "4px",
-                                                            marginBottom: "4px",
-                                                            paddingLeft: "10px",
-                                                            borderLeft: `2px solid ${currentColors.border}`
-                                                        }}>
-                                                            {item.contributions}
-                                                        </p>
-                                                    )}
-                                                </div>
-                                            ) : (
-                                                <div>
-                                                    <p style={{
-                                                        fontWeight: "bold",
-                                                        margin: "5px 0"
-                                                    }}>{item.name}</p>
-                                                    <div
-                                                        style={{
-                                                            marginLeft: "10px",
-                                                            lineHeight: "1.4"
-                                                        }}
-                                                        dangerouslySetInnerHTML={{ __html: item.details }}
-                                                    />
-                                                </div>
-                                            )
-                                        ) : (
-                                            <p style={{ margin: "3px 0" }}>{item}</p>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <div>
-                                {entry.command === "something" ? (
-                                    <pre style={{
-                                        margin: "5px 0",
-                                        padding: "8px",
-                                        backgroundColor: currentColors.background,
-                                        borderRadius: "3px",
-                                        overflowX: "auto"
-                                    }}>{something}</pre>
-                                ) : null}
-                                <div
-                                    style={{
-                                        wordWrap: "break-word",
-                                        textAlign: "left",
-                                        overflowX: "auto",
-                                        lineHeight: "1.5",
-                                        marginLeft: "10px"
-                                    }}
-                                    dangerouslySetInnerHTML={{
-                                        __html: `<p style="margin: 5px 0">${entry.output}</p>`
-                                    }}
-                                />
-                            </div>
-                        )}
+                        <CommandDisplay
+                            entry={entry}
+                            visiblity={true}
+                            currentColors={currentColors}
+                            asciiArtForSomethingCommand={something}
+                        />
                     </div>
                 ))}
             </div>
