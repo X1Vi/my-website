@@ -97,7 +97,6 @@ function CommandDisplay({ entry, visibility, currentColors, asciiArtForSomething
                                         margin: "5px 0",
                                         padding: "8px",
                                         backgroundColor: currentColors.codeblock,
-                                        borderRadius: "3px",
                                         overflowX: "auto",
                                         whiteSpace: "pre-wrap",
                                         display: "block",

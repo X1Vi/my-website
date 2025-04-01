@@ -347,19 +347,7 @@ const Terminal = () => {
     const [currentTheme, setCurrentTheme] = useState(colors.bluish)
     const [currentColors, setCurrentColors] = useState(colors.bluish)
     const [showAnimations, setShowAnimations] = useState(true);
-    const [toggleNormalModeArrayItemsArray, setToggleNormalModeArrayItemsArray] = useState([]);
 
-    const appendItemInNormalModeArray = (idx) => {
-        if (!toggleNormalModeArrayItemsArray.includes(idx)) {
-            setToggleNormalModeArrayItemsArray([...toggleNormalModeArrayItemsArray, idx]);
-        }
-    };
-
-    const popItemFromNormalModeArray = (idx) => {
-        setToggleNormalModeArrayItemsArray(
-            toggleNormalModeArrayItemsArray.filter(item => item !== idx)
-        );
-    };
     const allCommandsAndData = [
         { command: "about", output: commands.about },
         { command: "techstack", output: commands.techstack },
