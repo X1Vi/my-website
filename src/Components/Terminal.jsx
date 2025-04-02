@@ -347,7 +347,7 @@ const Terminal = () => {
     const [currentTheme, setCurrentTheme] = useState(colors.bluish)
     const [currentColors, setCurrentColors] = useState(colors.bluish)
     const [showAnimations, setShowAnimations] = useState(true);
-
+    const [lastToggledCommand, setLastToggledCommand] = useState([]);
     const allCommandsAndData = [
         { command: "about", output: commands.about },
         { command: "techstack", output: commands.techstack },
@@ -674,6 +674,9 @@ const Terminal = () => {
                             visiblity={true}
                             currentColors={currentColors}
                             asciiArtForSomethingCommand={something}
+                            normalMode={normalMode}
+                            lastToggledCommands={lastToggledCommand}
+                            setLastToggledCommands={setLastToggledCommand}
                         />
                     </div>
                 ))}
