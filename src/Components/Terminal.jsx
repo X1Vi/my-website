@@ -166,6 +166,11 @@ const commands = {
             name: "Open Source Japanese Kanji & Vocab Learning App",
             contributions: `Developed a Japanese Kanji and vocabulary learning app`,
             link: "https://x1vi.github.io/Learn-Kanji/"
+        },
+        {
+            name: "Github Visualizer Graphical",
+            contributions: `Developed a GitHub visualizer graphical with heatmaps and calendar`,
+            link: "https://x1vi.github.io/github-visual/"
         }
 
     ],
@@ -348,6 +353,7 @@ const Terminal = () => {
     const [currentColors, setCurrentColors] = useState(colors.bluish)
     const [showAnimations, setShowAnimations] = useState(true);
     const [lastToggledCommand, setLastToggledCommand] = useState([]);
+
     const allCommandsAndData = [
         { command: "about", output: commands.about },
         { command: "techstack", output: commands.techstack },
