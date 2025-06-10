@@ -72,6 +72,15 @@ const commands = {
     I have worked on codebases with over 30 million users and increasing, showcasing my ability to contribute to large-scale projects with significant impact.<br><br>  
     
     Experience<br>  
+    <strong>Trading Rust Developer</strong><br>  
+    Rust, Tokio, Actix, Socket Programming, Threading<br>  
+    Present<br>  
+    • Reduced latency by 5000×, improving response time from 1 second to 200 microseconds (99.98% faster) by implementing a backup socket connection for seamless failover.<br>  
+    • Building low-latency systems using Rust, optimizing for speed, scalability, and resilience.<br>  
+    • Leveraging Tokio and Actix for high-performance asynchronous networking and concurrent task management.<br>  
+    • Working with socket programming and multi-threaded architectures to handle real-time data streams.<br>  
+    • Writing comprehensive unit and integration tests to ensure robustness, maintainability, and production-readiness of critical components.<br><br>  
+
     <strong>Full Stack Mobile Developer</strong><br>  
     React Native, Django, Docker, Git, GitHub, Linux<br>  
     May 2024 – December<br>  
