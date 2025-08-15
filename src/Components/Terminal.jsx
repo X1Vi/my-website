@@ -24,7 +24,7 @@ const commands = {
         },
         {
             "name": "Game Development",
-            "details": "<strong>Godot</strong>, <strong>Bevy</strong>, <strong>macroquad</strong>"
+            "details": "<strong>Godot</strong>, <strong>Bevy</strong>, <strong>Macroquad</strong>"
         },
         {
             "name": "Version Control & Collaboration",
@@ -63,12 +63,8 @@ const commands = {
             "details": "<strong>Burp Suite</strong>, <strong>Metasploit</strong>, <strong>MOBSf</strong>, <strong>ZAP</strong>"
         },
         {
-            "name": "Languages",
-            "details": "<strong>Rust</strong>, <strong>TypeScript</strong>, <strong>Javascript</strong>, <strong>Python</strong>, <strong>GDScript</strong>"
-        },
-        {
             "name": "Hobbyist Languages",
-            "details": "<strong>C++</strong>, <strong>Golang</strong>, <strong>Elixir</strong>"
+            "details": "<strong>C++</strong>, <strong>Elixir</strong>"
         }
 
     ],
