@@ -16,7 +16,7 @@ const commands = {
     techstack: [
         {
             "name": "Full Stack Development",
-            "details": "<strong>MERN Stack</strong> (MongoDB, Express.js, React, Node.js), <strong>Django</strong>, <strong>REST API</strong>, <strong>Socket.io</strong>"
+            "details": "<strong>MERN Stack</strong> (MongoDB, Express.js, React, Node.js), <strong>Django</strong>, <strong>REST API</strong>, <strong>Socket.io</strong>, <strong>Tokio</strong>,  <strong>Axum</strong>,  <strong>Actix</strong>"
         },
         {
             "name": "Mobile Development",
@@ -24,7 +24,7 @@ const commands = {
         },
         {
             "name": "Game Development",
-            "details": "<strong>Godot</strong>, <strong>Bevy</strong>"
+            "details": "<strong>Godot</strong>, <strong>Bevy</strong>, <strong>macroquad</strong>"
         },
         {
             "name": "Version Control & Collaboration",
@@ -61,10 +61,17 @@ const commands = {
         {
             "name": "Security & Penetration Testing",
             "details": "<strong>Burp Suite</strong>, <strong>Metasploit</strong>, <strong>MOBSf</strong>, <strong>ZAP</strong>"
+        },
+        {
+            "name": "Languages",
+            "details": "<strong>Rust</strong>, <strong>TypeScript</strong>, <strong>Javascript</strong>, <strong>Python</strong>, <strong>GDScript</strong>"
+        },
+        {
+            "name": "Hobbyist Languages",
+            "details": "<strong>C++</strong>, <strong>Golang</strong>, <strong>Elixir</strong>"
         }
-    ]
-    ,
 
+    ],
     resume: `Summary<br>
     I am a Full Stack Mobile Developer specializing in React Native and React, transforming Figma designs into functional apps with seamless payment gateways, REST APIs, third-party integrations, Bluetooth (thermal printers), image optimization, and custom graph libraries.<br>  
     Beyond mobile development, I have experience with security tools like Metasploit, Burp Suite, ZAP, and MOBSf, as well as dev tools like Docker, Git, and GitHub.<br>  
@@ -83,7 +90,7 @@ const commands = {
 
     <strong>Full Stack Mobile Developer</strong><br>  
     React Native, Django, Docker, Git, GitHub, Linux<br>  
-    May 2024 – December<br>  
+    May 2024 – December 2024<br>  
     • Developed and managed a microservices architecture with about 8 microservices, ensuring scalability and maintainability of the system.<br>  
     • Implemented an image compression system that reduced file sizes by up to 90%, significantly cutting down bandwidth costs and server load, saving substantial resources.<br>  
     • Integrated an advanced anti-root detection mechanism in the React Native app, preventing exploitation on rooted devices and ensuring a secure user experience.<br>  
