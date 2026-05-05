@@ -1,15 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+/* eslint-disable react/prop-types */
+import { useState, useEffect, useRef } from 'react';
 
-function CommandDisplay({ entry, visibility, currentColors, asciiArtForSomethingCommand, normalMode, lastToggledCommands, setLastToggledCommands }) {
-    const [initialVisibility] = useState(() => {
-        // Only use saved state if in normal mode, otherwise use the visibility prop
-        if (normalMode) {
-            const savedState = sessionStorage.getItem(`visibility_${entry.command}`);
-            return savedState !== null ? JSON.parse(savedState) : visibility;
-        }
-        return true; // Always visible when not in normal mode
-    });
-    const [_visibility, setVisibility] = useState(initialVisibility);
+function CommandDisplay({ entry, visibility, currentColors, asciiArtForSomethingCommand, normalMode }) {
+    const [_visibility, setVisibility] = useState(visibility);
     const contentRef = useRef(null);
     const [contentHeight, setContentHeight] = useState(2000);
 
@@ -21,37 +14,14 @@ function CommandDisplay({ entry, visibility, currentColors, asciiArtForSomething
     }, [_visibility, entry, normalMode]);
 
     useEffect(() => {
-        if (normalMode) {
-            const savedState = sessionStorage.getItem(`visibility_${entry.command}`);
-            if (savedState !== null) {
-                setVisibility(JSON.parse(savedState));
-            } else {
-                setVisibility(visibility);
-            }
-        } else {
-            // Force visibility when not in normal mode
-            setVisibility(true);
-        }
-    }, [normalMode, entry.command, visibility]);
+        setVisibility(normalMode ? visibility : true);
+    }, [normalMode, visibility]);
 
     const handleToggle = () => {
         if (!normalMode) return;
-
-        setVisibility((prev) => {
-            const newVisibility = !prev;
-            sessionStorage.setItem(`visibility_${entry.command}`, JSON.stringify(newVisibility));
-            setLastToggledCommands((prevCommands) => {
-                if (newVisibility) {
-                    return [...prevCommands, entry.command];
-                } else {
-                    return prevCommands.filter(cmd => cmd !== entry.command);
-                }
-            });
-            return newVisibility;
-        });
+        setVisibility(prev => !prev);
     };
 
-    // Determine cursor style and actual visibility based on mode
     const cursorStyle = normalMode ? "pointer" : "default";
     const displayVisibility = normalMode ? _visibility : true;
 
