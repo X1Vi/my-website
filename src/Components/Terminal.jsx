@@ -1,5 +1,6 @@
 import AsciiAnimator from "./AsciiAnimator";
 import CommandDisplay from "./CommandDisplay";
+import ThemePicker from "./ThemePicker";
 import { useTerminal } from "../hooks/useTerminal";
 import commands from "../data/commands";
 import { asciiArt, somethingAscii } from "../data/asciiArt";
@@ -26,6 +27,27 @@ const keyframeStyles = `
     50% { opacity: 0.5; }
     100% { opacity: 0; }
 }
+
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes bgShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes subtleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+}
 `;
 
 const Terminal = () => {
@@ -43,7 +65,7 @@ const Terminal = () => {
         commandInputRef,
         handleKeyDown,
         handleCommandClick,
-        toggleTheme,
+        setTheme,
     } = useTerminal();
 
     const modeButtonLabel = normalMode ? "Hacker Mode" : "Normal Mode";
@@ -59,24 +81,17 @@ const Terminal = () => {
                 display: "flex",
                 flexDirection: "column",
                 boxSizing: "border-box",
-                width: "100vw"
+                width: "100vw",
+                transition: "background-color 0.6s ease, color 0.6s ease",
             }}
         >
+            <style dangerouslySetInnerHTML={{ __html: keyframeStyles }} />
+
             <div style={{ display: "flex", flexDirection: 'row-reverse', justifyContent: "flex-end", marginBottom: "20px" }}>
-                <button
-                    onClick={toggleTheme}
-                    style={{
-                        padding: "10px",
-                        backgroundColor: currentColors.background,
-                        color: currentColors.text,
-                        border: `2px solid ${currentColors.border}`,
-                        cursor: "pointer",
-                        fontSize: "16px",
-                        margin: "4px 4px"
-                    }}
-                >
-                    Toggle Theme
-                </button>
+                <ThemePicker
+                    currentColors={currentColors}
+                    onSelectTheme={setTheme}
+                />
 
                 <button
                     onClick={toggleNormalMode}
@@ -91,12 +106,15 @@ const Terminal = () => {
                         overflow: "hidden",
                         transition: "all 0.3s ease",
                         borderRadius: "4px",
+                        animation: "subtleFloat 4s ease-in-out infinite",
                     }}
                     onMouseEnter={(e) => {
                         e.currentTarget.style.boxShadow = `0 0 15px ${currentColors.border}`;
+                        e.currentTarget.style.animation = 'none';
                     }}
                     onMouseLeave={(e) => {
                         e.currentTarget.style.boxShadow = "none";
+                        e.currentTarget.style.animation = 'subtleFloat 4s ease-in-out infinite';
                     }}
                 >
                     {modeButtonLabel}
@@ -136,13 +154,11 @@ const Terminal = () => {
                         opacity: 0,
                         animation: "glowPulse 4s infinite",
                     }} />
-
-                    <style dangerouslySetInnerHTML={{ __html: keyframeStyles }} />
                 </button>
             </div>
 
             {toggleAvailableCommands && (
-                <div style={{ marginBottom: "20px" }}>
+                <div style={{ marginBottom: "20px", animation: "fadeSlideIn 0.3s ease-out" }}>
                     <p>
                         <strong>Available Commands (You can also click below if you are too lazy)</strong>
                     </p>
@@ -167,12 +183,14 @@ const Terminal = () => {
                 overflowY: "auto",
                 fontFamily: "monospace",
                 padding: "12px",
-                background: `linear-gradient(125deg, ${currentColors.codeblock} 0%, ${'cyan'} 300%)`,
+                background: `linear-gradient(125deg, ${currentColors.codeblock} 0%, ${currentColors.background} 100%)`,
                 color: currentColors.text,
-                borderRadius: "4px"
+                borderRadius: "4px",
+                transition: "background 0.6s ease",
+                boxShadow: `inset 0 0 30px ${currentColors.background}80`,
             }}>
                 {showAnimations && !normalMode && (
-                    <div style={{ marginBottom: "10px" }}>
+                    <div style={{ marginBottom: "10px", animation: "fadeSlideIn 0.6s ease-out" }}>
                         <AsciiAnimator />
                         <pre style={{
                             margin: "0",
@@ -186,7 +204,8 @@ const Terminal = () => {
                     <div key={`${entry.command}-${index}-${normalMode}`} style={{
                         marginBottom: "20px",
                         borderBottom: `1px solid ${currentColors.border}`,
-                        paddingBottom: "10px"
+                        paddingBottom: "10px",
+                        animation: `fadeSlideIn 0.4s ease-out ${index * 0.05}s both`,
                     }}>
                         <CommandDisplay
                             entry={entry}
@@ -199,27 +218,40 @@ const Terminal = () => {
                 ))}
             </div>
 
-            <div style={{ display: "flex", flexDirection: "row" }}>
+            <div style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                marginTop: "10px"
+            }}>
                 {windowWidth > 1024 && (
-                    <p style={{ fontWeight: "bold", display: "flex" }}>root@{Name.toLowerCase()} $</p>
+                    <p style={{
+                        fontWeight: "bold",
+                        display: "flex",
+                        margin: 0,
+                        marginRight: "8px"
+                    }}>root@{Name.toLowerCase()} $</p>
                 )}
                 {!normalMode && (
-                    <input
-                        ref={commandInputRef}
-                        style={{
-                            backgroundColor: currentColors.background,
-                            color: currentColors.text,
-                            border: "none",
-                            borderBottom: `0px solid ${currentColors.border}`,
-                            fontSize: "16px",
-                            outline: "none",
-                            width: "90%"
-                        }}
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        placeholder="Type 'help' to see the commands"
-                    />
+                    <div style={{ position: 'relative', flex: 1 }}>
+                        <input
+                            ref={commandInputRef}
+                            style={{
+                                backgroundColor: currentColors.background,
+                                color: currentColors.text,
+                                border: "none",
+                                borderBottom: `0px solid ${currentColors.border}`,
+                                fontSize: "16px",
+                                outline: "none",
+                                width: "90%",
+                                caretColor: currentColors.command,
+                            }}
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            placeholder="Type 'help' to see the commands"
+                        />
+                    </div>
                 )}
             </div>
         </div>

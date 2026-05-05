@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import commands from "../data/commands";
 import { allCommandsAndData } from "../data/commands";
-import { themes, defaultTheme } from "../data/themes";
+import { defaultTheme } from "../data/themes";
 
 export function useTerminal() {
     const [history, setHistory] = useState([{ command: "help", output: commands.help }]);
@@ -92,12 +92,9 @@ export function useTerminal() {
         setHistory(prev => [...prev, { command: cmd, output: commands[cmd] }]);
     }, []);
 
-    const toggleTheme = useCallback(() => {
-        const themeValues = Object.values(themes);
-        const currentIndex = themeValues.indexOf(currentTheme);
-        const nextIndex = (currentIndex + 1) % themeValues.length;
-        setCurrentTheme(themeValues[nextIndex]);
-    }, [currentTheme]);
+    const setTheme = useCallback((theme) => {
+        setCurrentTheme(theme);
+    }, []);
 
     const handleKeyDown = useCallback((e) => {
         if (e.key === "Enter") {
@@ -149,6 +146,6 @@ export function useTerminal() {
         commandInputRef,
         handleKeyDown,
         handleCommandClick,
-        toggleTheme,
+        setTheme,
     };
 }
