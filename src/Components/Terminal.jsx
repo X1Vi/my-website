@@ -183,7 +183,7 @@ const Terminal = () => {
                 )}
 
                 {history.map((entry, index) => (
-                    <div key={index} style={{
+                    <div key={`${entry.command}-${index}-${normalMode}`} style={{
                         marginBottom: "20px",
                         borderBottom: `1px solid ${currentColors.border}`,
                         paddingBottom: "10px"
