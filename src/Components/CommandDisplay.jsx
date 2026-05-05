@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useRef } from 'react';
+import QRCode from './QRCode';
 
 function CommandDisplay({ entry, visibility, currentColors, asciiArtForSomethingCommand, normalMode }) {
     const [_visibility, setVisibility] = useState(visibility);
@@ -43,7 +44,9 @@ function CommandDisplay({ entry, visibility, currentColors, asciiArtForSomething
                 lineHeight: "1.5"
             }}>
                 <div ref={contentRef}>
-                    {Array.isArray(entry.output) ? (
+                    {entry.output && entry.output.qrUrl ? (
+                        <QRCode url={entry.output.qrUrl} currentColors={currentColors} />
+                    ) : Array.isArray(entry.output) ? (
                         <div>
                             {entry.output.map((item, idx) => (
                                 <div key={idx} style={{

@@ -243,8 +243,13 @@ const commands = {
         },
     ],
 
-    help: "Available commands: about, ls, techstack, open_source, education, resume, socials, games, clear, help, video_editing, live_projects",
-    ls: "Available commands: about, ls, techstack, open_source, education, resume, socials, games, clear, help, video_editing, live_projects",
+    help: "Available commands: about, ls, techstack, open_source, education, resume, socials, games, qr, clear, help, video_editing, live_projects",
+    ls: "Available commands: about, ls, techstack, open_source, education, resume, socials, games, qr, clear, help, video_editing, live_projects",
+
+    qr: {
+        qrUrl: "https://x1vi.github.io/my-website",
+        label: "Scan to visit my website",
+    },
 
     something: `
     Just clouds turned into ASCII art from my pixel art.
@@ -264,6 +269,7 @@ export const allCommandsAndData = [
     { command: "live_projects", output: commands.live_projects },
     { command: "video_editing", output: commands.video_editing },
     { command: "games", output: commands.games },
+    { command: "qr", output: commands.qr },
 ];
 
 export default commands;
