@@ -6,13 +6,18 @@ function CommandDisplay({ entry, visibility, currentColors, asciiArtForSomething
     const [_visibility, setVisibility] = useState(visibility);
     const contentRef = useRef(null);
     const [contentHeight, setContentHeight] = useState(2000);
+    const [heightVersion, setHeightVersion] = useState(0);
+
+    const recalcHeight = () => {
+        setHeightVersion(v => v + 1);
+    };
 
     useEffect(() => {
         if ((_visibility || !normalMode) && contentRef.current) {
             const height = contentRef.current.scrollHeight;
             setContentHeight(height + 50);
         }
-    }, [_visibility, entry, normalMode]);
+    }, [_visibility, entry, normalMode, heightVersion]);
 
     useEffect(() => {
         setVisibility(normalMode ? visibility : true);
@@ -45,7 +50,7 @@ function CommandDisplay({ entry, visibility, currentColors, asciiArtForSomething
             }}>
                 <div ref={contentRef}>
                     {entry.output && entry.output.qrUrl ? (
-                        <QRCode url={entry.output.qrUrl} currentColors={currentColors} />
+                        <QRCode url={entry.output.qrUrl} currentColors={currentColors} onImageLoad={recalcHeight} />
                     ) : Array.isArray(entry.output) ? (
                         <div>
                             {entry.output.map((item, idx) => (

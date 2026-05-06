@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import QRCodeLib from 'qrcode';
 
-function QRCode({ url, currentColors }) {
+function QRCode({ url, currentColors, onImageLoad }) {
     const [dataUrl, setDataUrl] = useState(null);
     const [error, setError] = useState(null);
 
@@ -43,6 +43,7 @@ function QRCode({ url, currentColors }) {
             <img
                 src={dataUrl}
                 alt={`QR code for ${url}`}
+                onLoad={() => onImageLoad && onImageLoad()}
                 style={{
                     display: 'block',
                     maxWidth: '200px',
